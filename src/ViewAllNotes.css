@@ -1,0 +1,8 @@
+.view-all-notes {
+  display: flex;
+}
+
+.note {
+  border: black 1px solid;
+  padding: 6px;
+ }
