@@ -10,10 +10,13 @@ function AddNote({ allNotes, setAllNotes }) {
       ...allNotes,
       { id: self.crypto.randomUUID(), title: title, body: body },
     ]);
+    setTitle("");
+    setBody("");
   }
 
   return (
     <div className="add-note">
+      <h2>Add note</h2>
       <input
         type="text"
         placeholder="Title"

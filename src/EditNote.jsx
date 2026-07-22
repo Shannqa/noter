@@ -1,26 +1,18 @@
 import { useState } from "react";
 import { useParams, useOutletContext } from "react-router";
-import ViewNoteMenu from "./ViewNoteMenu";
 
-function Note() {
+function EditNote() {
   const [allNotes] = useOutletContext();
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
-
   if (!note) {
     return <h2>No note found</h2>;
   }
-
   return (
-    <>
-      <h2>View note</h2>
-      <div>
-        <div id="title">{note.title}</div>
-        <div id="body">{note.body}</div>
-      </div>
-      <ViewNoteMenu id={id} />
-    </>
+    <div>
+      <h2>Edit note</h2>
+    </div>
   );
 }
 
-export default Note;
+export default EditNote;
