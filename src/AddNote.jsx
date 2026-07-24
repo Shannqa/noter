@@ -31,7 +31,9 @@ function AddNote({ allNotes, setAllNotes }) {
         autoFocus={true}
         className="note-body"
       ></textarea>
-      <button onClick={(e) => addNewNote()}>Submit</button>
+      <button onClick={(e) => addNewNote()} className="add-button">
+        Submit
+      </button>
     </div>
   );
 }

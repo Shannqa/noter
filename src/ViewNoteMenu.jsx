@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import "./ViewNoteMenu.css";
 
 function ViewNoteMenu({ id }) {
   return (

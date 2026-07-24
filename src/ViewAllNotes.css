@@ -1,8 +1,28 @@
 .view-all-notes {
   display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .note {
   border: black 1px solid;
   padding: 6px;
+  margin: 6px;
+  line-height: 1.2rem;
+  width: calc(100vw / 3 - 40px);
+  max-height: 200px;
+  word-break: break-all;
  }
+
+ .view-all-notes a:link, .view-all-notes a:active, .view-all-notes a:hover, .view-all-notes a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.view-all-notes .note:hover {
+  background-color: azure;
+}
+
+.view-all-notes .note:active {
+  background-color: rgb(252, 255, 240);
+}

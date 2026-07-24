@@ -1,20 +1,18 @@
-.add-note {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.view-note {
   border: 1px black solid;
   width: 520px;
   padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.add-note .note-title {
+.note-title {
   margin: 4px;
   padding: 4px;
   width: 500px;
   line-height: 1.5rem;
 }
 
-.add-note .note-body {
+.note-body {
   margin: 4px;
   padding: 4px;
   width: 500px;
@@ -22,8 +20,4 @@
   line-height: 1.5rem;
 }
 
-.add-note .add-button {
-  width: 200px;
-  margin: 0.5rem;
-  padding: 0.2rem;
-}
+

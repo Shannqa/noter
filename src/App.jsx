@@ -9,7 +9,6 @@ function App() {
 
   return (
     <>
-      <div>Hello world</div>
       <Link to={"/"}>Home</Link>
       <Outlet context={[allNotes]} />
       <AddNote allNotes={allNotes} setAllNotes={setAllNotes} />

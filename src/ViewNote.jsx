@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams, useOutletContext } from "react-router";
 import ViewNoteMenu from "./ViewNoteMenu";
+import "./ViewNote.css";
 
 function Note() {
   const [allNotes] = useOutletContext();
@@ -14,9 +15,9 @@ function Note() {
   return (
     <>
       <h2>View note</h2>
-      <div>
-        <div id="title">{note.title}</div>
-        <div id="body">{note.body}</div>
+      <div className="view-note">
+        <div className="note-title">{note.title}</div>
+        <div className="note-body">{note.body}</div>
       </div>
       <ViewNoteMenu id={id} />
     </>
