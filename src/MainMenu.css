@@ -1,0 +1,5 @@
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+}

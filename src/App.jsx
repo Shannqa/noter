@@ -3,6 +3,7 @@ import "./App.css";
 import AddNote from "./AddNote";
 import ViewAllNotes from "./ViewAllNotes";
 import { Link, Outlet } from "react-router";
+import MainMenu from "./MainMenu";
 
 function App() {
   const [allNotes, setAllNotes] = useState([]);
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <Link to={"/"}>Home</Link>
+      <MainMenu />
       <Outlet context={[allNotes]} />
       <AddNote allNotes={allNotes} setAllNotes={setAllNotes} />
       {/* <ViewAllNotes allNotes={allNotes} /> */}
