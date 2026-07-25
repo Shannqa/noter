@@ -6,10 +6,12 @@ function AddNote({ allNotes, setAllNotes }) {
   const [body, setBody] = useState("");
 
   function addNewNote() {
-    setAllNotes([
-      ...allNotes,
-      { id: self.crypto.randomUUID(), title: title, body: body },
-    ]);
+    const newId = self.crypto.randomUUID();
+    setAllNotes([...allNotes, { id: newId, title: title, body: body }]);
+    localStorage.setItem(
+      "notes",
+      JSON.stringify([...allNotes, { id: newId, title: title, body: body }]),
+    );
     setTitle("");
     setBody("");
   }

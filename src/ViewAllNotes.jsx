@@ -3,7 +3,13 @@ import { Link, useOutletContext } from "react-router";
 import "./ViewAllNotes.css";
 
 function ViewAllNotes() {
-  const [allNotes] = useOutletContext();
+  const [allNotes, setAllNotes] = useOutletContext();
+
+  function clearStorage() {
+    localStorage.clear();
+    setAllNotes([]);
+  }
+
   return (
     <>
       <h2>All notes</h2>
@@ -17,6 +23,7 @@ function ViewAllNotes() {
           </Link>
         ))}
       </div>
+      <button onClick={clearStorage}>Clear storage</button>
     </>
   );
 }
