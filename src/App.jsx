@@ -4,6 +4,7 @@ import AddNote from "./AddNote";
 import ViewAllNotes from "./ViewAllNotes";
 import { Link, Outlet } from "react-router";
 import MainMenu from "./MainMenu";
+import AddButton from "./AddButton";
 
 function App() {
   const [allNotes, setAllNotes] = useState(() => {
@@ -20,8 +21,9 @@ function App() {
       </div>
 
       <Outlet context={[allNotes, setAllNotes]} />
-      <AddNote allNotes={allNotes} setAllNotes={setAllNotes} />
+      {/* <AddNote allNotes={allNotes} setAllNotes={setAllNotes} /> */}
       {/* <ViewAllNotes allNotes={allNotes} /> */}
+      {/* <AddButton /> */}
     </>
   );
 }

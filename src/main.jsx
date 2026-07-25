@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import ViewNote from "./ViewNote.jsx";
 import EditNote from "./EditNote.jsx";
 import ViewAllNotes from "./ViewAllNotes.jsx";
+import AddNote from "./AddNote.jsx";
 import "./index.css";
 import App from "./App.jsx";
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "note/:id/edit",
         element: <EditNote />,
+      },
+      {
+        path: "note/add",
+        element: <AddNote />,
       },
     ],
   },

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useOutletContext } from "react-router";
 import "./ViewAllNotes.css";
+import AddButton from "./AddButton";
 
 function ViewAllNotes() {
   const [allNotes, setAllNotes] = useOutletContext();
@@ -24,6 +25,7 @@ function ViewAllNotes() {
         ))}
       </div>
       <button onClick={clearStorage}>Clear storage</button>
+      <AddButton />
     </>
   );
 }

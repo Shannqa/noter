@@ -7,6 +7,9 @@ function MainMenuItems({ menuOpen, onClick }) {
       <div className="main-menu-icon" onClick={onClick}>
         =
       </div>
+      <Link to="/note/add" className="menu-item" onClick={onClick}>
+        Add note
+      </Link>
       <Link to="/" className="menu-item" onClick={onClick}>
         All notes
       </Link>

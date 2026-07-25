@@ -14,7 +14,10 @@
   word-break: break-all;
  }
 
- .view-all-notes a:link, .view-all-notes a:active, .view-all-notes a:hover, .view-all-notes a:visited {
+ .view-all-notes a:link, 
+ .view-all-notes a:active, 
+ .view-all-notes a:hover, 
+ .view-all-notes a:visited {
   color: black;
   text-decoration: none;
 }

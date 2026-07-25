@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router";
 import "./AddNote.css";
 
-function AddNote({ allNotes, setAllNotes }) {
+function AddNote() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [allNotes, setAllNotes] = useOutletContext();
 
   function addNewNote() {
     const newId = self.crypto.randomUUID();
