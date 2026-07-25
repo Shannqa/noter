@@ -10,8 +10,11 @@ function App() {
 
   return (
     <>
-      <Link to={"/"}>Home</Link>
-      <MainMenu />
+      <div className="header">
+        <MainMenu />
+        <Link to={"/"}>Home</Link>
+      </div>
+
       <Outlet context={[allNotes]} />
       <AddNote allNotes={allNotes} setAllNotes={setAllNotes} />
       {/* <ViewAllNotes allNotes={allNotes} /> */}
