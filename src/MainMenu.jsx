@@ -41,9 +41,9 @@ function MainMenu() {
 
   return (
     <div className="navbar" ref={node}>
-      <div className="main-menu-icon" onClick={toggleMenu}>
+      <button className="main-menu-icon" onClick={toggleMenu}>
         =
-      </div>
+      </button>
       {menuOpen && <MainMenuItems menuOpen={menuOpen} onClick={toggleMenu} />}
     </div>
   );

@@ -3,7 +3,7 @@ import { useParams, useOutletContext, useNavigate } from "react-router";
 import "./EditNote.css";
 
 function EditNote() {
-  const [allNotes, setAllNotes] = useOutletContext();
+  const { allNotes, setAllNotes } = useOutletContext();
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
   const [title, setTitle] = useState(note.title || "");

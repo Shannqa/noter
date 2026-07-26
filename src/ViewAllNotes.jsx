@@ -4,7 +4,7 @@ import "./ViewAllNotes.css";
 import AddButton from "./AddButton";
 
 function ViewAllNotes() {
-  const [allNotes, setAllNotes] = useOutletContext();
+  const { allNotes, setAllNotes } = useOutletContext();
 
   function clearStorage() {
     localStorage.clear();

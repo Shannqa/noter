@@ -4,7 +4,7 @@ import ViewNoteMenu from "./ViewNoteMenu";
 import "./ViewNote.css";
 
 function Note() {
-  const [allNotes] = useOutletContext();
+  const { allNotes } = useOutletContext();
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
 

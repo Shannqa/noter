@@ -4,12 +4,19 @@
   width: 160px;
   top: 8px;
   left: 8px;
+  background-color: rgb(246, 236, 255);
+}
+
+.main-menu button, .navbar button {
+  border: 0;
+  background-color: unset;
 }
 
 .main-menu-icon {
   width: 2rem;
   height: 2rem;
   font-size: 1.5rem;
+  margin-right: 8px;
 }
 
 .main-menu-icon:hover {
@@ -24,4 +31,30 @@
 
 .main-menu {
   position: absolute;
+}
+
+.main-menu .menu-item {
+  text-align: center;
+  /* background-color: white; */
+  border: 0px;
+  font-size: 1rem;
+  padding: 4px;
+}
+
+.main-menu a.menu-item:link, 
+.main-menu a.menu-item:active, 
+.main-menu a.menu-item:hover, 
+.main-menu a.menu-item:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.main-menu .menu-item:hover {
+  background-color: azure;
+  cursor: pointer;
+}
+
+.main-menu .menu-item:active {
+  background-color: rgb(252, 255, 240);
+  cursor: pointer;
 }

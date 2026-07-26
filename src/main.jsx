@@ -5,8 +5,12 @@ import ViewNote from "./ViewNote.jsx";
 import EditNote from "./EditNote.jsx";
 import ViewAllNotes from "./ViewAllNotes.jsx";
 import AddNote from "./AddNote.jsx";
-import "./index.css";
+// import "./index.css";
 import App from "./App.jsx";
+import Archive from "./Archive.jsx";
+import Bin from "./Bin.jsx";
+import Categories from "./Categories.jsx";
+import Settings from "./Settings.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,22 @@ const router = createBrowserRouter([
       {
         path: "note/add",
         element: <AddNote />,
+      },
+      {
+        path: "archive",
+        element: <Archive />,
+      },
+      {
+        path: "bin",
+        element: <Bin />,
+      },
+      {
+        path: "categories",
+        element: <Categories />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
       },
     ],
   },

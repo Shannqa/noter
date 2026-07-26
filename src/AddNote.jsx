@@ -5,7 +5,7 @@ import "./AddNote.css";
 function AddNote() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [allNotes, setAllNotes] = useOutletContext();
+  const { allNotes, setAllNotes } = useOutletContext();
 
   function addNewNote() {
     const newId = self.crypto.randomUUID();

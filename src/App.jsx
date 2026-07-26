@@ -12,7 +12,12 @@ function App() {
     const initialNotes = JSON.parse(savedNotes);
     return initialNotes || [];
   });
-
+  const [categories, setCategories] = useState(() => {
+    const savedCategories = localStorage.getItem("categories");
+    const initialCategories = JSON.parse(savedCategories);
+    return initialCategories || [];
+  });
+  console.log(categories);
   return (
     <>
       <div className="header">
@@ -20,7 +25,7 @@ function App() {
         <Link to={"/"}>Home</Link>
       </div>
 
-      <Outlet context={[allNotes, setAllNotes]} />
+      <Outlet context={{ allNotes, setAllNotes, categories, setCategories }} />
       {/* <AddNote allNotes={allNotes} setAllNotes={setAllNotes} /> */}
       {/* <ViewAllNotes allNotes={allNotes} /> */}
       {/* <AddButton /> */}
