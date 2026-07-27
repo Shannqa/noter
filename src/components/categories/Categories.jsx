@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router";
+import { useOutletContext, Link } from "react-router";
 import AddCategory from "./AddCategory";
 import "./Categories.css";
 
@@ -14,7 +14,9 @@ function Categories() {
       ) : (
         <ul>
           {categories.map((item) => (
-            <li key={item.id}>{item.name}</li>
+            <li key={item.id}>
+              <Link to={`./${item.id}`}>{item.name}</Link>
+            </li>
           ))}
         </ul>
       )}

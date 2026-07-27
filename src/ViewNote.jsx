@@ -1,16 +1,24 @@
 import { useState } from "react";
-import { useParams, useOutletContext } from "react-router";
+import { useParams, useOutletContext, Link } from "react-router";
 import ViewNoteMenu from "./ViewNoteMenu";
 import "./ViewNote.css";
 
 function Note() {
-  const { allNotes } = useOutletContext();
+  const { allNotes, categories } = useOutletContext();
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
 
   if (!note) {
     return <h2>No note found</h2>;
   }
+
+  console.log(note);
+
+  const categoriesInNote = categories.filter((cat) =>
+    note.categories.includes(cat.id),
+  );
+
+  console.log(categoriesInNote);
 
   return (
     <>
@@ -19,6 +27,13 @@ function Note() {
         <div className="note-title">{note.title}</div>
         <div className="note-body">{note.body}</div>
       </div>
+      <ul>
+        {categoriesInNote.map((item) => (
+          <li key={item.id}>
+            <Link to={`/categories/${item.id}`}>{item.name}</Link>
+          </li>
+        ))}
+      </ul>
       <ViewNoteMenu id={id} />
     </>
   );

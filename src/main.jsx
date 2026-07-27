@@ -9,8 +9,9 @@ import AddNote from "./AddNote.jsx";
 import App from "./App.jsx";
 import Archive from "./Archive.jsx";
 import Bin from "./Bin.jsx";
-import Categories from "./Categories.jsx";
+import Categories from "./components/categories/Categories.jsx";
 import Settings from "./Settings.jsx";
+import Category from "./components/categories/Category.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "categories",
         element: <Categories />,
+      },
+      {
+        path: "categories/:id",
+        element: <Category />,
       },
       {
         path: "settings",

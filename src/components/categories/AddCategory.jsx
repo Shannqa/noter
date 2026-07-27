@@ -13,7 +13,11 @@ function AddCategory({ categories, setCategories }) {
           valid: false,
           message: "Category with that name already exists",
         };
+      } else {
+        return { valid: true };
       }
+    } else {
+      return { valid: true };
     }
   }
 

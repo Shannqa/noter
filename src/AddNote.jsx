@@ -5,17 +5,35 @@ import "./AddNote.css";
 function AddNote() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const { allNotes, setAllNotes } = useOutletContext();
+  const [category, setCategory] = useState("");
+  const { allNotes, setAllNotes, categories } = useOutletContext();
 
   function addNewNote() {
     const newId = self.crypto.randomUUID();
-    setAllNotes([...allNotes, { id: newId, title: title, body: body }]);
+    setAllNotes([
+      ...allNotes,
+      {
+        id: newId,
+        title: title,
+        body: body,
+        categories: !category ? [] : [category],
+      },
+    ]);
     localStorage.setItem(
       "notes",
-      JSON.stringify([...allNotes, { id: newId, title: title, body: body }]),
+      JSON.stringify([
+        ...allNotes,
+        {
+          id: newId,
+          title: title,
+          body: body,
+          categories: !category ? [] : [category],
+        },
+      ]),
     );
     setTitle("");
     setBody("");
+    setCategory("");
   }
 
   return (
@@ -35,6 +53,18 @@ function AddNote() {
         autoFocus={true}
         className="note-body"
       ></textarea>
+      <select
+        name="category"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value="">Select category</option>
+        {categories.map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.name}
+          </option>
+        ))}
+      </select>
       <button onClick={(e) => addNewNote()} className="add-button">
         Submit
       </button>
