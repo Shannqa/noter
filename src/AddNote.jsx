@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router";
+import { useOutletContext, useNavigate } from "react-router";
 import "./AddNote.css";
 
 function AddNote() {
@@ -7,6 +7,7 @@ function AddNote() {
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
   const { allNotes, setAllNotes, categories } = useOutletContext();
+  const navigate = useNavigate();
 
   function addNewNote() {
     const newId = self.crypto.randomUUID();
@@ -17,6 +18,7 @@ function AddNote() {
         title: title,
         body: body,
         categories: !category ? [] : [category],
+        status: "active",
       },
     ]);
     localStorage.setItem(
@@ -28,12 +30,14 @@ function AddNote() {
           title: title,
           body: body,
           categories: !category ? [] : [category],
+          status: "active",
         },
       ]),
     );
     setTitle("");
     setBody("");
     setCategory("");
+    return navigate("/note/" + newId);
   }
 
   return (

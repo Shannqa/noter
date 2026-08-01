@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useOutletContext, Link } from "react-router";
-import ViewNoteMenu from "./ViewNoteMenu";
+import NoteMenu from "./NoteMenu";
 import "./ViewNote.css";
 
 function Note() {
@@ -34,7 +34,7 @@ function Note() {
           </li>
         ))}
       </ul>
-      <ViewNoteMenu id={id} />
+      <NoteMenu id={id} edit={true} bin={note.status == "bin" ? false : true} />
     </>
   );
 }

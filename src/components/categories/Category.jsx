@@ -9,6 +9,15 @@ function Category() {
     note.categories.includes(id),
   );
 
+  if (notesInCategory.length === 0) {
+    return (
+      <div className="category-view">
+        <h2>Category</h2>
+        <p>No notes in this category.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="category-view">
       <h2>Category</h2>

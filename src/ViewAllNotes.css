@@ -1,5 +1,6 @@
 .view-all-notes {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 1rem;
 }

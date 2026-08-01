@@ -15,14 +15,18 @@ function ViewAllNotes() {
     <>
       <h2>All notes</h2>
       <div className="view-all-notes">
-        {allNotes.map((item) => (
-          <Link to={"note/" + item.id} key={item.id}>
-            <div className="note">
-              <div>{item.title}</div>
-              <div>{item.body}</div>
-            </div>
-          </Link>
-        ))}
+        {allNotes.map((item) => {
+          if (item.status === "active") {
+            return (
+              <Link to={"note/" + item.id} key={item.id}>
+                <div className="note">
+                  <div>{item.title}</div>
+                  <div>{item.body}</div>
+                </div>
+              </Link>
+            );
+          }
+        })}
       </div>
       <button onClick={clearStorage}>Clear storage</button>
       <AddButton />
