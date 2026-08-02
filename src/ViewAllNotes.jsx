@@ -14,7 +14,7 @@ function ViewAllNotes() {
   return (
     <>
       <h2>All notes</h2>
-      <div className="view-all-notes">
+      <div className="multi-notes-view">
         {allNotes.map((item) => {
           if (item.status === "active") {
             return (

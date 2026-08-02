@@ -34,7 +34,12 @@ function Note() {
           </li>
         ))}
       </ul>
-      <NoteMenu id={id} edit={true} bin={note.status == "bin" ? false : true} />
+      <NoteMenu
+        id={id}
+        edit={true}
+        bin={note.status == "bin" ? false : true}
+        archive={note.status == "archive" ? false : true}
+      />
     </>
   );
 }

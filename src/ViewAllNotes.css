@@ -1,4 +1,4 @@
-.view-all-notes {
+.multi-notes-view {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -15,18 +15,18 @@
   word-break: break-all;
  }
 
- .view-all-notes a:link, 
- .view-all-notes a:active, 
- .view-all-notes a:hover, 
- .view-all-notes a:visited {
+ .multi-notes-view a:link, 
+ .multi-notes-view a:active, 
+ .multi-notes-view a:hover, 
+ .multi-notes-view a:visited {
   color: black;
   text-decoration: none;
 }
 
-.view-all-notes .note:hover {
+.multi-notes-view .note:hover {
   background-color: azure;
 }
 
-.view-all-notes .note:active {
+.multi-notes-view .note:active {
   background-color: rgb(252, 255, 240);
 }
