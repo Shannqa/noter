@@ -11,6 +11,7 @@ function AddNote() {
 
   function addNewNote() {
     const newId = self.crypto.randomUUID();
+    const addedDate = Date.now();
     setAllNotes([
       ...allNotes,
       {
@@ -19,6 +20,9 @@ function AddNote() {
         body: body,
         categories: !category ? [] : [category],
         status: "active",
+        createdAt: addedDate,
+        lastEditedAt: addedDate,
+        deletedAt: null,
       },
     ]);
     localStorage.setItem(
@@ -31,6 +35,9 @@ function AddNote() {
           body: body,
           categories: !category ? [] : [category],
           status: "active",
+          createdAt: addedDate,
+          lastEditedAt: addedDate,
+          deletedAt: null,
         },
       ]),
     );

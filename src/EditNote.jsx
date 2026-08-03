@@ -14,11 +14,13 @@ function EditNote() {
 
   console.log(note);
   function editNote() {
+    const editedDate = Date.now();
     setAllNotes(
       allNotes.map((item) => {
         if (item.id == note.id) {
           item.title = title;
           item.body = body;
+          item.lastEditedAt = editedDate;
         }
         return item;
       }),
@@ -30,6 +32,7 @@ function EditNote() {
           if (item.id == note.id) {
             item.title = title;
             item.body = body;
+            item.lastEditedAt = editedDate;
           }
           return item;
         }),

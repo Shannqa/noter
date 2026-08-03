@@ -12,13 +12,11 @@ function Note() {
     return <h2>No note found</h2>;
   }
 
-  console.log(note);
+  // console.log(note);
 
   const categoriesInNote = categories.filter((cat) =>
     note.categories.includes(cat.id),
   );
-
-  console.log(categoriesInNote);
 
   return (
     <>
@@ -34,6 +32,13 @@ function Note() {
           </li>
         ))}
       </ul>
+      <div className="date-list">
+        <p>Created at: {new Date(note.createdAt).toLocaleString("pl-PL")}</p>
+        <p>
+          Last edited at: {new Date(note.lastEditedAt).toLocaleString("pl-PL")}
+        </p>
+      </div>
+
       <NoteMenu
         id={id}
         edit={true}

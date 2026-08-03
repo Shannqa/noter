@@ -6,10 +6,12 @@ function NoteMenu({ id, view, edit, bin, archive }) {
   const navigate = useNavigate();
 
   function deleteNote() {
+    const deletedDate = Date.now();
     setAllNotes(
       allNotes.map((item) => {
         if (item.id == id) {
           item.status = "bin";
+          item.deletedAt = deletedDate;
         }
         return item;
       }),
@@ -20,6 +22,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
         allNotes.map((item) => {
           if (item.id == id) {
             item.status = "bin";
+            item.deletedAt = deletedDate;
           }
           return item;
         }),
@@ -33,6 +36,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
       allNotes.map((item) => {
         if (item.id == id) {
           item.status = "active";
+          item.deletedAt = null;
         }
         return item;
       }),
@@ -43,6 +47,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
         allNotes.map((item) => {
           if (item.id == id) {
             item.status = "active";
+            item.deletedAt = null;
           }
           return item;
         }),
@@ -97,6 +102,19 @@ function NoteMenu({ id, view, edit, bin, archive }) {
     return navigate("/");
   }
 
+  function deleteNotePermAsk() {
+    // show modal - are you sure?
+  }
+
+  function deleteNotePerm() {
+    setAllNotes(allNotes.filter((item) => item.id !== id));
+    localStorage.setItem(
+      "notes",
+      JSON.stringify(allNotes.filter((item) => item.id !== id)),
+    );
+    return navigate("/");
+  }
+
   return (
     <div className="view-note-menu">
       {view && (
@@ -111,7 +129,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
       )}
       {archive && (
         <button className="menu-item" onClick={archiveNote}>
-          Archive note
+          Move to archive
         </button>
       )}
       {!archive && (
@@ -121,12 +139,17 @@ function NoteMenu({ id, view, edit, bin, archive }) {
       )}
       {bin && (
         <button className="menu-item" onClick={deleteNote}>
-          Delete note
+          Delete
         </button>
       )}
       {!bin && (
         <button className="menu-item" onClick={restoreNote}>
-          Restore note
+          Restore
+        </button>
+      )}
+      {!bin && (
+        <button className="menu-item" onClick={deleteNotePerm}>
+          Delete permanently
         </button>
       )}
     </div>
