@@ -3,15 +3,14 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import ViewNote from "./ViewNote.jsx";
 import EditNote from "./EditNote.jsx";
-import ViewAllNotes from "./ViewAllNotes.jsx";
 import AddNote from "./AddNote.jsx";
-// import "./index.css";
 import App from "./App.jsx";
-import Archive from "./Archive.jsx";
-import Bin from "./Bin.jsx";
+import ViewAllNotes from "./components/multiViews/ViewAllNotes.jsx";
+import Archive from "./components/multiViews/Archive.jsx";
+import Bin from "./components/multiViews/Bin.jsx";
+import Category from "./components/multiViews/Category.jsx";
 import Categories from "./components/categories/Categories.jsx";
-import Settings from "./Settings.jsx";
-import Category from "./components/categories/Category.jsx";
+import Settings from "./components/settings/Settings.jsx";
 
 const router = createBrowserRouter([
   {

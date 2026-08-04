@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.home a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #222222;
+}
+
+.home a:hover {
+  /* color: rgb(80, 80, 80); */
+}
+
+.home {
+  border-bottom: 2px transparent solid;
+  padding: 2px 4px;
+}
+
+.home:hover {
+  border-bottom: 2px #222222 solid;
+}
+
+.home:active {
+  border-bottom: 2px #222222 solid;
+  background-color: rgb(250, 248, 248);
+}

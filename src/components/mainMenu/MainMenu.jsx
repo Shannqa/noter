@@ -1,7 +1,7 @@
 import { Link } from "react-router";
-import "./MainMenu.css";
+// import "./MainMenu.css";
 import { useState, useEffect, useRef } from "react";
-import MainMenuItems from "./MainMenuItems";
+import MainMenuItems from "../../MainMenuItems";
 
 function MainMenu() {
   const [menuOpen, setMenuOpen] = useState(false);

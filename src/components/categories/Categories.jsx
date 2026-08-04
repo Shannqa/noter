@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useOutletContext, Link } from "react-router";
 import AddCategory from "./AddCategory";
-import "./Categories.css";
+import styles from "./categories.module.css";
 
 function Categories() {
   const { categories, setCategories } = useOutletContext();
 
   return (
-    <div className="categories">
+    <div className={styles.categoriesView}>
       <h2>Categories</h2>
       {categories.length == 0 ? (
         <p>No categories yet</p>
