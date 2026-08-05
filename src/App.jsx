@@ -1,9 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import "./App.css";
-import AddNote from "./AddNote";
+import AddNote from "./components/singleViews/AddNote";
 import { Link, Outlet } from "react-router";
 import Header from "./components/header/Header";
-import AddButton from "./AddButton";
+import AddButton from "./components/addButon/AddButton";
+
+export const AppContext = createContext({
+  allNotes: [],
+  setAllNotes: () => {},
+  categories: [],
+  setCategories: () => {},
+});
 
 function App() {
   const [allNotes, setAllNotes] = useState(() => {
@@ -20,12 +27,14 @@ function App() {
   console.log(categories);
   return (
     <>
-      <Header />
-      <div className="outlet-body">
-        <Outlet
-          context={{ allNotes, setAllNotes, categories, setCategories }}
-        />
-      </div>
+      <AppContext value={{ allNotes, setAllNotes, categories, setCategories }}>
+        <Header />
+        <div className="outlet-body">
+          <Outlet
+          // context={{ allNotes, setAllNotes, categories, setCategories }}
+          />
+        </div>
+      </AppContext>
 
       {/* <AddNote allNotes={allNotes} setAllNotes={setAllNotes} /> */}
       {/* <ViewAllNotes allNotes={allNotes} /> */}

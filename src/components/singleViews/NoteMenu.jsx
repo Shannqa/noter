@@ -1,8 +1,10 @@
-import { Link, useOutletContext, useNavigate } from "react-router";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router";
+import { AppContext } from "../../App";
 import "./ViewNoteMenu.css";
 
 function NoteMenu({ id, view, edit, bin, archive }) {
-  const { allNotes, setAllNotes, categories } = useOutletContext();
+  const { allNotes, setAllNotes, categories } = useContext(AppContext);
   const navigate = useNavigate();
 
   function deleteNote() {

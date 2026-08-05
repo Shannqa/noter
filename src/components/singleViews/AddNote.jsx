@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { useOutletContext, useNavigate } from "react-router";
+import { useState, useContext } from "react";
+import { useNavigate, useOutletContext } from "react-router";
+import { AppContext } from "../../App";
 import "./AddNote.css";
 
 function AddNote() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
-  const { allNotes, setAllNotes, categories } = useOutletContext();
+  const { allNotes, setAllNotes, categories } = useContext(AppContext);
   const navigate = useNavigate();
 
   function addNewNote() {

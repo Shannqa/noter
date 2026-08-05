@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { useParams, useOutletContext, Link } from "react-router";
+import { useState, useContext } from "react";
+import { useParams, Link } from "react-router";
+import { AppContext } from "../../App";
 import NoteMenu from "./NoteMenu";
 import "./ViewNote.css";
 
 function Note() {
-  const { allNotes, categories } = useOutletContext();
+  const { allNotes, categories } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
 

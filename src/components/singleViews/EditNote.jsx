@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { useParams, useOutletContext, useNavigate } from "react-router";
+import { useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router";
+import { AppContext } from "../../App";
 import "./EditNote.css";
 import NoteMenu from "./NoteMenu";
 
 function EditNote() {
-  const { allNotes, setAllNotes, categories } = useOutletContext();
+  const { allNotes, setAllNotes, categories } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
   const [title, setTitle] = useState(note.title || "");

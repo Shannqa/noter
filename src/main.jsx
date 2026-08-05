@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import ViewNote from "./ViewNote.jsx";
-import EditNote from "./EditNote.jsx";
-import AddNote from "./AddNote.jsx";
+import ViewNote from "./components/singleViews/ViewNote.jsx";
+import EditNote from "./components/singleViews/EditNote.jsx";
+import AddNote from "./components/singleViews/AddNote.jsx";
 import App from "./App.jsx";
 import ViewAllNotes from "./components/multiViews/ViewAllNotes.jsx";
 import Archive from "./components/multiViews/Archive.jsx";

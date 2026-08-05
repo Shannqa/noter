@@ -1,8 +1,10 @@
-import { useOutletContext, Link } from "react-router";
+import { useContext } from "react";
+import { Link } from "react-router";
+import { AppContext } from "../../App";
 import NoteList from "../noteList/NoteList";
 
 function Archive() {
-  const { allNotes, setAllNotes } = useOutletContext();
+  const { allNotes, setAllNotes } = useContext(AppContext);
   const notesInArchive = allNotes.filter((note) => note.status === "archive");
 
   return (

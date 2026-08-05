@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../../App";
 
-function AddCategory({ categories, setCategories }) {
+function AddCategory() {
+  const { categories, setCategories } = useContext(AppContext);
   const [name, setName] = useState("");
   const [error, setError] = useState("");
 

@@ -1,9 +1,11 @@
-import { useParams, useOutletContext, Link } from "react-router";
+import { useContext } from "react";
+import { useParams, Link } from "react-router";
+import { AppContext } from "../../App";
 import NoteList from "../noteList/NoteList.jsx";
 
 function Category() {
   const { allNotes, setAllNotes, categories, setCategories } =
-    useOutletContext();
+    useContext(AppContext);
   const { id } = useParams();
   const notesInCategory = allNotes.filter((note) =>
     note.categories.includes(id),
