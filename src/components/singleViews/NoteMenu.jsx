@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router";
 import { AppContext } from "../../App";
-import "./ViewNoteMenu.css";
+import styles from "./singleViews.module.css";
 
 function NoteMenu({ id, view, edit, bin, archive }) {
   const { allNotes, setAllNotes, categories } = useContext(AppContext);
@@ -118,39 +118,39 @@ function NoteMenu({ id, view, edit, bin, archive }) {
   }
 
   return (
-    <div className="view-note-menu">
+    <div className={styles.menu}>
       {view && (
-        <Link to={`/note/${id}`} className="menu-item">
+        <Link to={`/note/${id}`} className={styles.menuItem}>
           View
         </Link>
       )}
       {edit && (
-        <Link to={"./edit"} className="menu-item">
+        <Link to={"./edit"} className={styles.menuItem}>
           Edit
         </Link>
       )}
       {archive && (
-        <button className="menu-item" onClick={archiveNote}>
+        <button className={styles.menuItem} onClick={archiveNote}>
           Move to archive
         </button>
       )}
       {!archive && (
-        <button className="menu-item" onClick={unarchiveNote}>
+        <button className={styles.menuItem} onClick={unarchiveNote}>
           Remove from archive
         </button>
       )}
       {bin && (
-        <button className="menu-item" onClick={deleteNote}>
+        <button className={styles.menuItem} onClick={deleteNote}>
           Delete
         </button>
       )}
       {!bin && (
-        <button className="menu-item" onClick={restoreNote}>
+        <button className={styles.menuItem} onClick={restoreNote}>
           Restore
         </button>
       )}
       {!bin && (
-        <button className="menu-item" onClick={deleteNotePerm}>
+        <button className={styles.menuItem} onClick={deleteNotePerm}>
           Delete permanently
         </button>
       )}

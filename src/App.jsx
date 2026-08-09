@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from "react";
-import "./App.css";
+import styles from "./app.module.css";
 import AddNote from "./components/singleViews/AddNote";
 import { Link, Outlet } from "react-router";
 import Header from "./components/header/Header";
@@ -29,16 +29,10 @@ function App() {
     <>
       <AppContext value={{ allNotes, setAllNotes, categories, setCategories }}>
         <Header />
-        <div className="outlet-body">
-          <Outlet
-          // context={{ allNotes, setAllNotes, categories, setCategories }}
-          />
+        <div className={styles.outletBody}>
+          <Outlet />
         </div>
       </AppContext>
-
-      {/* <AddNote allNotes={allNotes} setAllNotes={setAllNotes} /> */}
-      {/* <ViewAllNotes allNotes={allNotes} /> */}
-      {/* <AddButton /> */}
     </>
   );
 }

@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate, useOutletContext } from "react-router";
 import { AppContext } from "../../App";
-import "./AddNote.css";
+import SingleView from "./SingleView";
+import styles from "./singleViews.module.css";
 
 function AddNote() {
   const [title, setTitle] = useState("");
@@ -49,21 +50,20 @@ function AddNote() {
   }
 
   return (
-    <div className="add-note">
-      <h2>Add note</h2>
+    <SingleView title="Add note">
       <input
         type="text"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="note-title"
+        className={styles.title}
       />
       <textarea
         placeholder="Note"
         value={body}
         onChange={(e) => setBody(e.target.value)}
         autoFocus={true}
-        className="note-body"
+        className={styles.body}
       ></textarea>
       <select
         name="category"
@@ -77,10 +77,10 @@ function AddNote() {
           </option>
         ))}
       </select>
-      <button onClick={(e) => addNewNote()} className="add-button">
+      <button onClick={(e) => addNewNote()} className={styles.button}>
         Submit
-      </button>
-    </div>
+      </button>    
+    </SingleView>
   );
 }
 

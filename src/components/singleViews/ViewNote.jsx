@@ -2,15 +2,20 @@ import { useState, useContext } from "react";
 import { useParams, Link } from "react-router";
 import { AppContext } from "../../App";
 import NoteMenu from "./NoteMenu";
-import "./ViewNote.css";
+import SingleView from "./SingleView";
+import styles from "./singleViews.module.css";
 
-function Note() {
+function ViewNote() {
   const { allNotes, categories } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
 
   if (!note) {
-    return <h2>No note found</h2>;
+    return (
+      <SingleView title="View note">
+        <p>No note found.</p>
+      </SingleView>
+    )
   }
 
   // console.log(note);
@@ -20,11 +25,10 @@ function Note() {
   );
 
   return (
-    <>
-      <h2>View note</h2>
-      <div className="view-note">
-        <div className="note-title">{note.title}</div>
-        <div className="note-body">{note.body}</div>
+    <SingleView title="View note">
+      <div>
+        <div className={styles.title}>{note.title}</div>
+        <div className={styles.body}>{note.body}</div>
       </div>
       <ul>
         {categoriesInNote.map((item) => (
@@ -33,21 +37,20 @@ function Note() {
           </li>
         ))}
       </ul>
-      <div className="date-list">
+      <div className={styles.dateList}>
         <p>Created at: {new Date(note.createdAt).toLocaleString("pl-PL")}</p>
         <p>
           Last edited at: {new Date(note.lastEditedAt).toLocaleString("pl-PL")}
         </p>
       </div>
-
       <NoteMenu
         id={id}
         edit={true}
         bin={note.status == "bin" ? false : true}
         archive={note.status == "archive" ? false : true}
       />
-    </>
+    </SingleView>
   );
 }
 
-export default Note;
+export default ViewNote;
