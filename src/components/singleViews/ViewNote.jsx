@@ -4,6 +4,7 @@ import { AppContext } from "../../App";
 import NoteMenu from "./NoteMenu";
 import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
+import MenuIcon from "./MenuIcon";
 
 function ViewNote() {
   const { allNotes, categories } = useContext(AppContext);
@@ -15,7 +16,7 @@ function ViewNote() {
       <SingleView title="View note">
         <p>No note found.</p>
       </SingleView>
-    )
+    );
   }
 
   // console.log(note);
@@ -26,11 +27,11 @@ function ViewNote() {
 
   return (
     <SingleView title="View note">
-      <div>
+      <div className={styles.note}>
         <div className={styles.title}>{note.title}</div>
         <div className={styles.body}>{note.body}</div>
       </div>
-      <ul>
+      <ul className={styles.categories}>
         {categoriesInNote.map((item) => (
           <li key={item.id}>
             <Link to={`/categories/${item.id}`}>{item.name}</Link>
@@ -43,6 +44,7 @@ function ViewNote() {
           Last edited at: {new Date(note.lastEditedAt).toLocaleString("pl-PL")}
         </p>
       </div>
+      <MenuIcon />
       <NoteMenu
         id={id}
         edit={true}

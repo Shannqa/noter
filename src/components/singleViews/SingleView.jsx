@@ -1,10 +1,12 @@
+import styles from "./singleViews.module.css";
+
 function SingleView({ title, children }) {
-  return(
+  return (
     <div className={styles.singleView}>
       <h2>{title}</h2>
       {children}
     </div>
-  )
+  );
 }
 
-export default singleView;
+export default SingleView;

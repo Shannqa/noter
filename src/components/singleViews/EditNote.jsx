@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router";
 import { AppContext } from "../../App";
-import "./EditNote.css";
 import NoteMenu from "./NoteMenu";
 import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
@@ -49,7 +48,7 @@ function EditNote() {
       <SingleView title="Edit note">
         <p>No note found.</p>
       </SingleView>
-    )
+    );
   }
 
   return (
@@ -81,7 +80,7 @@ function EditNote() {
         ))}
       </select>
       <button onClick={(e) => editNote()} className={styles.button}>
-          Submit
+        Submit
       </button>
       <NoteMenu id={id} view={true} bin={true} />
     </SingleView>
