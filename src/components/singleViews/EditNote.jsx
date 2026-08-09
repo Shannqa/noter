@@ -6,7 +6,7 @@ import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
 
 function EditNote() {
-  const { allNotes, setAllNotes, categories } = useContext(AppContext);
+  const { allNotes, categories, dispatch } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
   const [title, setTitle] = useState(note.title || "");
@@ -14,32 +14,42 @@ function EditNote() {
   const [category, setCategory] = useState(note.categories[0] || "");
   const navigate = useNavigate();
 
-  console.log(note);
+  // console.log(note);
   function editNote() {
     const editedDate = Date.now();
-    setAllNotes(
-      allNotes.map((item) => {
-        if (item.id == note.id) {
-          item.title = title;
-          item.body = body;
-          item.lastEditedAt = editedDate;
-        }
-        return item;
-      }),
-    );
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(
-        allNotes.map((item) => {
-          if (item.id == note.id) {
-            item.title = title;
-            item.body = body;
-            item.lastEditedAt = editedDate;
-          }
-          return item;
-        }),
-      ),
-    );
+
+    dispatch({
+      type: "edit_note",
+      id: id,
+      title: title,
+      body: body,
+      categories: !category ? [] : [category],
+      editedDate: editedDate,
+    });
+
+    // setAllNotes(
+    //   allNotes.map((item) => {
+    //     if (item.id == note.id) {
+    //       item.title = title;
+    //       item.body = body;
+    //       item.lastEditedAt = editedDate;
+    //     }
+    //     return item;
+    //   }),
+    // );
+    // localStorage.setItem(
+    //   "notes",
+    //   JSON.stringify(
+    //     allNotes.map((item) => {
+    //       if (item.id == note.id) {
+    //         item.title = title;
+    //         item.body = body;
+    //         item.lastEditedAt = editedDate;
+    //       }
+    //       return item;
+    //     }),
+    //   ),
+    // );
     return navigate("/note/" + id);
   }
 

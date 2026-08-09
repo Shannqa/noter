@@ -8,41 +8,51 @@ function AddNote() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
-  const { allNotes, setAllNotes, categories } = useContext(AppContext);
+  const { allNotes, categories, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
 
   function addNewNote() {
     const newId = self.crypto.randomUUID();
     const addedDate = Date.now();
-    setAllNotes([
-      ...allNotes,
-      {
-        id: newId,
-        title: title,
-        body: body,
-        categories: !category ? [] : [category],
-        status: "active",
-        createdAt: addedDate,
-        lastEditedAt: addedDate,
-        deletedAt: null,
-      },
-    ]);
-    localStorage.setItem(
-      "notes",
-      JSON.stringify([
-        ...allNotes,
-        {
-          id: newId,
-          title: title,
-          body: body,
-          categories: !category ? [] : [category],
-          status: "active",
-          createdAt: addedDate,
-          lastEditedAt: addedDate,
-          deletedAt: null,
-        },
-      ]),
-    );
+
+    dispatch({
+      type: "add_note",
+      id: newId,
+      title: title,
+      body: body,
+      categories: !category ? [] : [category],
+      addedDate: addedDate,
+    });
+
+    // setAllNotes([
+    //   ...allNotes,
+    //   {
+    //     id: newId,
+    //     title: title,
+    //     body: body,
+    //     categories: !category ? [] : [category],
+    //     status: "active",
+    //     createdAt: addedDate,
+    //     lastEditedAt: addedDate,
+    //     deletedAt: null,
+    //   },
+    // ]);
+    // localStorage.setItem(
+    //   "notes",
+    //   JSON.stringify([
+    //     ...allNotes,
+    //     {
+    //       id: newId,
+    //       title: title,
+    //       body: body,
+    //       categories: !category ? [] : [category],
+    //       status: "active",
+    //       createdAt: addedDate,
+    //       lastEditedAt: addedDate,
+    //       deletedAt: null,
+    //     },
+    //   ]),
+    // );
     setTitle("");
     setBody("");
     setCategory("");
@@ -79,7 +89,7 @@ function AddNote() {
       </select>
       <button onClick={(e) => addNewNote()} className={styles.button}>
         Submit
-      </button>    
+      </button>
     </SingleView>
   );
 }

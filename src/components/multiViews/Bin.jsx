@@ -4,7 +4,7 @@ import { AppContext } from "../../App";
 import NoteList from "../noteList/NoteList";
 
 function Bin() {
-  const { allNotes, setAllNotes } = useContext(AppContext);
+  const { allNotes } = useContext(AppContext);
   const notesInBin = allNotes.filter((note) => note.status === "bin");
 
   return (

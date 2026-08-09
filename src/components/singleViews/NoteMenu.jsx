@@ -4,103 +4,122 @@ import { AppContext } from "../../App";
 import styles from "./noteMenu.module.css";
 
 function NoteMenu({ id, view, edit, bin, archive }) {
-  const { allNotes, setAllNotes, categories } = useContext(AppContext);
+  const { allNotes, dispatch, categories } = useContext(AppContext);
   const navigate = useNavigate();
 
   function deleteNote() {
     const deletedDate = Date.now();
-    setAllNotes(
-      allNotes.map((item) => {
-        if (item.id == id) {
-          item.status = "bin";
-          item.deletedAt = deletedDate;
-        }
-        return item;
-      }),
-    );
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(
-        allNotes.map((item) => {
-          if (item.id == id) {
-            item.status = "bin";
-            item.deletedAt = deletedDate;
-          }
-          return item;
-        }),
-      ),
-    );
+    dispatch({
+      type: "bin_note",
+      id: id,
+      deletedDate: deletedDate,
+    });
+
+    // setAllNotes(
+    //   allNotes.map((item) => {
+    //     if (item.id == id) {
+    //       item.status = "bin";
+    //       item.deletedAt = deletedDate;
+    //     }
+    //     return item;
+    //   }),
+    // );
+    // localStorage.setItem(
+    //   "notes",
+    //   JSON.stringify(
+    //     allNotes.map((item) => {
+    //       if (item.id == id) {
+    //         item.status = "bin";
+    //         item.deletedAt = deletedDate;
+    //       }
+    //       return item;
+    //     }),
+    //   ),
+    // );
     return navigate("/");
   }
 
-  function restoreNote() {
-    setAllNotes(
-      allNotes.map((item) => {
-        if (item.id == id) {
-          item.status = "active";
-          item.deletedAt = null;
-        }
-        return item;
-      }),
-    );
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(
-        allNotes.map((item) => {
-          if (item.id == id) {
-            item.status = "active";
-            item.deletedAt = null;
-          }
-          return item;
-        }),
-      ),
-    );
+  function unbinNote() {
+    dispatch({
+      type: "unbin_note",
+      id: id,
+    });
+
+    // setAllNotes(
+    //   allNotes.map((item) => {
+    //     if (item.id == id) {
+    //       item.status = "active";
+    //       item.deletedAt = null;
+    //     }
+    //     return item;
+    //   }),
+    // );
+    // localStorage.setItem(
+    //   "notes",
+    //   JSON.stringify(
+    //     allNotes.map((item) => {
+    //       if (item.id == id) {
+    //         item.status = "active";
+    //         item.deletedAt = null;
+    //       }
+    //       return item;
+    //     }),
+    //   ),
+    // );
     return navigate("/");
   }
 
   function archiveNote() {
-    setAllNotes(
-      allNotes.map((item) => {
-        if (item.id == id) {
-          item.status = "archive";
-        }
-        return item;
-      }),
-    );
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(
-        allNotes.map((item) => {
-          if (item.id == id) {
-            item.status = "archive";
-          }
-          return item;
-        }),
-      ),
-    );
+    dispatch({
+      type: "archive_note",
+      id: id,
+    });
+    // setAllNotes(
+    //   allNotes.map((item) => {
+    //     if (item.id == id) {
+    //       item.status = "archive";
+    //     }
+    //     return item;
+    //   }),
+    // );
+    // localStorage.setItem(
+    //   "notes",
+    //   JSON.stringify(
+    //     allNotes.map((item) => {
+    //       if (item.id == id) {
+    //         item.status = "archive";
+    //       }
+    //       return item;
+    //     }),
+    //   ),
+    // );
     return navigate("/");
   }
 
   function unarchiveNote() {
-    setAllNotes(
-      allNotes.map((item) => {
-        if (item.id == id) {
-          item.status = "active";
-        }
-        return item;
-      }),
-    );
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(
-        allNotes.map((item) => {
-          if (item.id == id) {
-            item.status = "active";
-          }
-          return item;
-        }),
-      ),
-    );
+    dispatch({
+      type: "unarchive_note",
+      id: id,
+    });
+    // setAllNotes(
+    //   allNotes.map((item) => {
+    //     if (item.id == id) {
+    //       item.status = "active";
+    //     }
+    //     return item;
+    //   }),
+    // );
+    // localStorage.setItem(
+    //   "notes",
+    //   JSON.stringify(
+    //     allNotes.map((item) => {
+    //       if (item.id == id) {
+    //         item.status = "active";
+    //       }
+    //       return item;
+    //     }),
+    //   ),
+    // );
     return navigate("/");
   }
 
@@ -109,11 +128,11 @@ function NoteMenu({ id, view, edit, bin, archive }) {
   }
 
   function deleteNotePerm() {
-    setAllNotes(allNotes.filter((item) => item.id !== id));
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(allNotes.filter((item) => item.id !== id)),
-    );
+    // setAllNotes(allNotes.filter((item) => item.id !== id));
+    // localStorage.setItem(
+    //   "notes",
+    //   JSON.stringify(allNotes.filter((item) => item.id !== id)),
+    // );
     return navigate("/");
   }
 
@@ -145,7 +164,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
         </button>
       )}
       {!bin && (
-        <button className={styles.item} onClick={restoreNote}>
+        <button className={styles.item} onClick={unbinNote}>
           Restore
         </button>
       )}
