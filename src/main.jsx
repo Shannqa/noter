@@ -8,7 +8,7 @@ import App from "./App.jsx";
 import ViewAllNotes from "./components/multiViews/ViewAllNotes.jsx";
 import Archive from "./components/multiViews/Archive.jsx";
 import Bin from "./components/multiViews/Bin.jsx";
-import Category from "./components/multiViews/Category.jsx";
+import Category from "./components/categories/Category.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Settings from "./components/settings/Settings.jsx";
 

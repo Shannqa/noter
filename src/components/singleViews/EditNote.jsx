@@ -6,7 +6,11 @@ import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
 
 function EditNote() {
-  const { allNotes, categories, dispatch } = useContext(AppContext);
+  const {
+    allNotes,
+    categories,
+    dispatchNotes: dispatch,
+  } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
   const [title, setTitle] = useState(note.title || "");
@@ -16,7 +20,7 @@ function EditNote() {
 
   // console.log(note);
   function editNote() {
-    const editedDate = Date.now();
+    const date = Date.now();
 
     dispatch({
       type: "edit_note",
@@ -24,7 +28,7 @@ function EditNote() {
       title: title,
       body: body,
       categories: !category ? [] : [category],
-      editedDate: editedDate,
+      date: date,
     });
 
     // setAllNotes(

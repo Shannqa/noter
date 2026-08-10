@@ -4,15 +4,15 @@ import { AppContext } from "../../App";
 import styles from "./noteMenu.module.css";
 
 function NoteMenu({ id, view, edit, bin, archive }) {
-  const { allNotes, dispatch, categories } = useContext(AppContext);
+  const { allNotes, dispatchNotes, categories } = useContext(AppContext);
   const navigate = useNavigate();
 
   function deleteNote() {
-    const deletedDate = Date.now();
-    dispatch({
+    const date = Date.now();
+    dispatchNotes({
       type: "bin_note",
       id: id,
-      deletedDate: deletedDate,
+      deletedAt: date,
     });
 
     // setAllNotes(
@@ -40,7 +40,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
   }
 
   function unbinNote() {
-    dispatch({
+    dispatchNotes({
       type: "unbin_note",
       id: id,
     });
@@ -70,7 +70,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
   }
 
   function archiveNote() {
-    dispatch({
+    dispatchNotes({
       type: "archive_note",
       id: id,
     });
@@ -97,7 +97,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
   }
 
   function unarchiveNote() {
-    dispatch({
+    dispatchNotes({
       type: "unarchive_note",
       id: id,
     });
@@ -128,6 +128,10 @@ function NoteMenu({ id, view, edit, bin, archive }) {
   }
 
   function deleteNotePerm() {
+    dispatchNotes({
+      type: "delete_perm",
+      id: id,
+    });
     // setAllNotes(allNotes.filter((item) => item.id !== id));
     // localStorage.setItem(
     //   "notes",

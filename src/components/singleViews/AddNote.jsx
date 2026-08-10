@@ -8,7 +8,11 @@ function AddNote() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
-  const { allNotes, categories, dispatch } = useContext(AppContext);
+  const {
+    allNotes,
+    categories,
+    dispatchNotes: dispatch,
+  } = useContext(AppContext);
   const navigate = useNavigate();
 
   function addNewNote() {

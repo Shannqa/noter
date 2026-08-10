@@ -2,7 +2,8 @@ import { useState, useContext } from "react";
 import { AppContext } from "../../App";
 
 function AddCategory() {
-  const { categories, setCategories } = useContext(AppContext);
+  const { categories, setCategories, dispatchCategories } =
+    useContext(AppContext);
   const [name, setName] = useState("");
   const [error, setError] = useState("");
 
@@ -31,11 +32,16 @@ function AddCategory() {
     } else {
       setError("");
       const newId = self.crypto.randomUUID();
-      setCategories([...categories, { id: newId, name: name }]);
-      localStorage.setItem(
-        "categories",
-        JSON.stringify([...categories, { id: newId, name: name }]),
-      );
+      dispatchCategories({
+        type: "add_category",
+        id: newId,
+        name: name,
+      });
+      // setCategories([...categories, { id: newId, name: name }]);
+      // localStorage.setItem(
+      //   "categories",
+      //   JSON.stringify([...categories, { id: newId, name: name }]),
+      // );
       setName("");
     }
   }

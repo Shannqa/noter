@@ -6,7 +6,7 @@ function NoteList({ notesArray, status, category }) {
     <div className={styles.multiNotes}>
       {notesArray.map((item) => {
         return (
-          <Link to={"note/" + item.id} key={item.id}>
+          <Link to={"/note/" + item.id} key={item.id}>
             <div className={styles.note}>
               <div className={styles.title}>{item.title}</div>
               <div>{item.body}</div>

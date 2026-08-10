@@ -23,7 +23,7 @@ function noteReducer(allNotes, action) {
             title: action.title,
             body: action.body,
             categories: action.categories,
-            lastEditedAt: action.editedDate,
+            lastEditedAt: action.date,
           };
         }
         return item;
@@ -75,6 +75,17 @@ function noteReducer(allNotes, action) {
             ...item,
             status: "active",
             lastEditedAt: action.lastEditedAt,
+          };
+        }
+        return item;
+      });
+    }
+    case "delete_category_in_notes": {
+      return allNotes.map((item) => {
+        if (item.categories.includes(action.id)) {
+          return {
+            ...item,
+            categories: item.categories.filter((id) => id !== action.id),
           };
         }
         return item;

@@ -1,0 +1,33 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  border: 1px black solid;
+  margin: 4px 0;
+}
+
+.item {
+  text-align: center;
+  background-color: white;
+  border: 0px;
+  font-size: 1rem;
+  padding: 4px;
+}
+
+.menu a.item:link,
+.menu a.item:active,
+.menu a.item:hover,
+.menu a.item:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.menu .item:hover {
+  background-color: azure;
+  cursor: pointer;
+}
+
+.menu .item:active {
+  background-color: rgb(252, 255, 240);
+  cursor: pointer;
+}
