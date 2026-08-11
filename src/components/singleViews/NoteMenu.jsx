@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { AppContext } from "../../App";
 import styles from "./noteMenu.module.css";
 
-function NoteMenu({ id, view, edit, bin, archive }) {
+function NoteMenu({ id, view, edit, bin, archive, setOpenDialog }) {
   const { allNotes, dispatchNotes, categories } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -15,27 +15,6 @@ function NoteMenu({ id, view, edit, bin, archive }) {
       deletedAt: date,
     });
 
-    // setAllNotes(
-    //   allNotes.map((item) => {
-    //     if (item.id == id) {
-    //       item.status = "bin";
-    //       item.deletedAt = deletedDate;
-    //     }
-    //     return item;
-    //   }),
-    // );
-    // localStorage.setItem(
-    //   "notes",
-    //   JSON.stringify(
-    //     allNotes.map((item) => {
-    //       if (item.id == id) {
-    //         item.status = "bin";
-    //         item.deletedAt = deletedDate;
-    //       }
-    //       return item;
-    //     }),
-    //   ),
-    // );
     return navigate("/");
   }
 
@@ -45,27 +24,6 @@ function NoteMenu({ id, view, edit, bin, archive }) {
       id: id,
     });
 
-    // setAllNotes(
-    //   allNotes.map((item) => {
-    //     if (item.id == id) {
-    //       item.status = "active";
-    //       item.deletedAt = null;
-    //     }
-    //     return item;
-    //   }),
-    // );
-    // localStorage.setItem(
-    //   "notes",
-    //   JSON.stringify(
-    //     allNotes.map((item) => {
-    //       if (item.id == id) {
-    //         item.status = "active";
-    //         item.deletedAt = null;
-    //       }
-    //       return item;
-    //     }),
-    //   ),
-    // );
     return navigate("/");
   }
 
@@ -74,25 +32,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
       type: "archive_note",
       id: id,
     });
-    // setAllNotes(
-    //   allNotes.map((item) => {
-    //     if (item.id == id) {
-    //       item.status = "archive";
-    //     }
-    //     return item;
-    //   }),
-    // );
-    // localStorage.setItem(
-    //   "notes",
-    //   JSON.stringify(
-    //     allNotes.map((item) => {
-    //       if (item.id == id) {
-    //         item.status = "archive";
-    //       }
-    //       return item;
-    //     }),
-    //   ),
-    // );
+
     return navigate("/");
   }
 
@@ -101,43 +41,13 @@ function NoteMenu({ id, view, edit, bin, archive }) {
       type: "unarchive_note",
       id: id,
     });
-    // setAllNotes(
-    //   allNotes.map((item) => {
-    //     if (item.id == id) {
-    //       item.status = "active";
-    //     }
-    //     return item;
-    //   }),
-    // );
-    // localStorage.setItem(
-    //   "notes",
-    //   JSON.stringify(
-    //     allNotes.map((item) => {
-    //       if (item.id == id) {
-    //         item.status = "active";
-    //       }
-    //       return item;
-    //     }),
-    //   ),
-    // );
+
     return navigate("/");
   }
 
   function deleteNotePermAsk() {
     // show modal - are you sure?
-  }
-
-  function deleteNotePerm() {
-    dispatchNotes({
-      type: "delete_perm",
-      id: id,
-    });
-    // setAllNotes(allNotes.filter((item) => item.id !== id));
-    // localStorage.setItem(
-    //   "notes",
-    //   JSON.stringify(allNotes.filter((item) => item.id !== id)),
-    // );
-    return navigate("/");
+    setOpenDialog();
   }
 
   return (
@@ -173,7 +83,7 @@ function NoteMenu({ id, view, edit, bin, archive }) {
         </button>
       )}
       {!bin && (
-        <button className={styles.item} onClick={deleteNotePerm}>
+        <button className={styles.item} onClick={deleteNotePermAsk}>
           Delete permanently
         </button>
       )}

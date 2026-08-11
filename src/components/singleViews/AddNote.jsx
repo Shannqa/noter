@@ -28,35 +28,6 @@ function AddNote() {
       addedDate: addedDate,
     });
 
-    // setAllNotes([
-    //   ...allNotes,
-    //   {
-    //     id: newId,
-    //     title: title,
-    //     body: body,
-    //     categories: !category ? [] : [category],
-    //     status: "active",
-    //     createdAt: addedDate,
-    //     lastEditedAt: addedDate,
-    //     deletedAt: null,
-    //   },
-    // ]);
-    // localStorage.setItem(
-    //   "notes",
-    //   JSON.stringify([
-    //     ...allNotes,
-    //     {
-    //       id: newId,
-    //       title: title,
-    //       body: body,
-    //       categories: !category ? [] : [category],
-    //       status: "active",
-    //       createdAt: addedDate,
-    //       lastEditedAt: addedDate,
-    //       deletedAt: null,
-    //     },
-    //   ]),
-    // );
     setTitle("");
     setBody("");
     setCategory("");

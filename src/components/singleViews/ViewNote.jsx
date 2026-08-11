@@ -5,11 +5,13 @@ import NoteMenu from "./NoteMenu";
 import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
 import MenuIcon from "./MenuIcon";
+import DeleteNoteDialog from "../dialogs/DeleteNoteDialog";
 
 function ViewNote() {
   const { allNotes, categories } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
+  const [openDialog, setOpenDialog] = useState(false);
 
   if (!note) {
     return (
@@ -50,6 +52,12 @@ function ViewNote() {
         edit={true}
         bin={note.status == "bin" ? false : true}
         archive={note.status == "archive" ? false : true}
+        setOpenDialog={() => setOpenDialog(true)}
+      />
+      <DeleteNoteDialog
+        id={id}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
       />
     </SingleView>
   );

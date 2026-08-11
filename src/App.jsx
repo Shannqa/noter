@@ -9,11 +9,9 @@ import categoryReducer from "./categoryReducer";
 
 export const AppContext = createContext({
   allNotes: [],
-  // setAllNotes: () => {},
   dispatchNotes: null,
   categories: [],
   dispatchCategories: null,
-  // setCategories: () => {},
 });
 
 function App() {
@@ -31,18 +29,6 @@ function App() {
       return initialCategories || [];
     },
   );
-  // const [allNotes, setAllNotes] = useState(() => {
-  //   const savedNotes = localStorage.getItem("notes");
-  //   const initialNotes = JSON.parse(savedNotes);
-  //   return initialNotes || [];
-  // });
-  // const [categories, setCategories] = useState(() => {
-  //   const savedCategories = localStorage.getItem("categories");
-  //   const initialCategories = JSON.parse(savedCategories);
-  //   return initialCategories || [];
-  // });
-  // console.log(allNotes);
-  // console.log(categories);
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(allNotes));
@@ -57,11 +43,7 @@ function App() {
       <AppContext
         value={{
           allNotes,
-          // setAllNotes: () => {
-          //   console.log("set");
-          // },
           categories,
-          // setCategories,
           dispatchNotes,
           dispatchCategories,
         }}

@@ -21,6 +21,7 @@ function CategoryMenu({ id, editing, setEditing }) {
       type: "delete_category_in_notes",
       id: id,
     });
+    return navigate("/categories");
   }
 
   return (

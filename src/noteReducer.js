@@ -54,7 +54,7 @@ function noteReducer(allNotes, action) {
       });
     }
     case "delete_perm": {
-      return allNotes.filter((item) => item.id !== id);
+      return allNotes.filter((item) => item.id !== action.id);
     }
     case "archive_note": {
       return allNotes.map((item) => {

@@ -1,3 +1,12 @@
+function checkValidity(categories, action) {
+  if (categories.some((item) => item.name === action.name)) {
+    return {
+      valid: false,
+      message: "Category with that name already exists",
+    };
+  }
+}
+
 function categoryReducer(categories, action) {
   switch (action.type) {
     case "add_category": {

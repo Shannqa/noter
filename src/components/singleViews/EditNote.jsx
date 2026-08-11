@@ -31,29 +31,6 @@ function EditNote() {
       date: date,
     });
 
-    // setAllNotes(
-    //   allNotes.map((item) => {
-    //     if (item.id == note.id) {
-    //       item.title = title;
-    //       item.body = body;
-    //       item.lastEditedAt = editedDate;
-    //     }
-    //     return item;
-    //   }),
-    // );
-    // localStorage.setItem(
-    //   "notes",
-    //   JSON.stringify(
-    //     allNotes.map((item) => {
-    //       if (item.id == note.id) {
-    //         item.title = title;
-    //         item.body = body;
-    //         item.lastEditedAt = editedDate;
-    //       }
-    //       return item;
-    //     }),
-    //   ),
-    // );
     return navigate("/note/" + id);
   }
 

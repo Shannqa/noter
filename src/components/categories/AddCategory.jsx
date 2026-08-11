@@ -8,7 +8,7 @@ function AddCategory() {
   const [error, setError] = useState("");
 
   function checkValidity() {
-    if (name.length == 0) {
+    if (name.trim().length == 0) {
       return { valid: false, message: "Category name must not be empty" };
     } else if (categories.length > 0) {
       if (categories.some((item) => item.name === name)) {
@@ -37,11 +37,6 @@ function AddCategory() {
         id: newId,
         name: name,
       });
-      // setCategories([...categories, { id: newId, name: name }]);
-      // localStorage.setItem(
-      //   "categories",
-      //   JSON.stringify([...categories, { id: newId, name: name }]),
-      // );
       setName("");
     }
   }

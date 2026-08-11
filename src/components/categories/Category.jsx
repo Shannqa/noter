@@ -13,26 +13,43 @@ function Category() {
     note.categories.includes(id),
   );
   const category = categories.find((item) => item.id === id);
-  console.log(category);
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState(category.name || "");
+  const [error, setError] = useState("");
 
-  console.log(allNotes);
-  console.log(notesInCategory);
+  // console.log(allNotes);
+  // console.log(notesInCategory);
+
+  function checkValidity() {
+    if (categoryName.trim().length === 0) {
+      return { valid: false, message: "Category name must not be empty" };
+    }
+    return { valid: true };
+  }
 
   function saveCategory() {
-    dispatchCategories({
-      type: "edit_category",
-      id: id,
-      name: categoryName,
-    });
+    const check = checkValidity();
+    if (!check.valid) {
+      setError(check.message);
+    } else {
+      setError("");
+      dispatchCategories({
+        type: "edit_category",
+        id: id,
+        name: categoryName,
+      });
+    }
     setEditing(false);
   }
 
   function cancelRenaming() {
     setEditing(false);
     setCategoryName(category.name);
+    setError("");
   }
 
+  if (!category) {
+    return <p>Category not found.</p>;
+  }
   return (
     <>
       <h2>
