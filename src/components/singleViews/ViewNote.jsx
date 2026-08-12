@@ -12,6 +12,7 @@ function ViewNote() {
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openNoteMenu, setOpenNoteMenu] = useState(false);
 
   if (!note) {
     return (
@@ -21,6 +22,10 @@ function ViewNote() {
     );
   }
 
+  // function handleMenu() {
+  //   setOpenNoteMenu(true);
+  // }
+
   // console.log(note);
 
   const categoriesInNote = categories.filter((cat) =>
@@ -29,31 +34,42 @@ function ViewNote() {
 
   return (
     <SingleView title="View note">
+      <div className={styles.viewHeading}>
+        <h2>View Note</h2>
+        <div className={styles.menuContainer}>
+          <MenuIcon onClick={() => setOpenNoteMenu(!openNoteMenu)} />
+          {openNoteMenu && (
+            <NoteMenu
+              id={id}
+              edit={true}
+              bin={note.status == "bin" ? false : true}
+              archive={note.status == "archive" ? false : true}
+              setOpenDialog={() => setOpenDialog(true)}
+            />
+          )}
+        </div>
+      </div>
+
       <div className={styles.note}>
         <div className={styles.title}>{note.title}</div>
         <div className={styles.body}>{note.body}</div>
       </div>
-      <ul className={styles.categories}>
-        {categoriesInNote.map((item) => (
-          <li key={item.id}>
-            <Link to={`/categories/${item.id}`}>{item.name}</Link>
-          </li>
-        ))}
-      </ul>
+      {categoriesInNote.length > 0 && (
+        <ul className={styles.categories}>
+          {categoriesInNote.map((item) => (
+            <li key={item.id}>
+              <Link to={`/categories/${item.id}`}>{item.name}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
       <div className={styles.dateList}>
         <p>Created at: {new Date(note.createdAt).toLocaleString("pl-PL")}</p>
         <p>
           Last edited at: {new Date(note.lastEditedAt).toLocaleString("pl-PL")}
         </p>
       </div>
-      <MenuIcon />
-      <NoteMenu
-        id={id}
-        edit={true}
-        bin={note.status == "bin" ? false : true}
-        archive={note.status == "archive" ? false : true}
-        setOpenDialog={() => setOpenDialog(true)}
-      />
+
       <DeleteNoteDialog
         id={id}
         openDialog={openDialog}

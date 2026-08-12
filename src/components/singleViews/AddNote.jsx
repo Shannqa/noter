@@ -36,20 +36,22 @@ function AddNote() {
 
   return (
     <SingleView title="Add note">
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className={styles.title}
-      />
-      <textarea
-        placeholder="Note"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-        autoFocus={true}
-        className={styles.body}
-      ></textarea>
+      <div className={styles.note}>
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className={styles.title}
+        />
+        <textarea
+          placeholder="Note"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          autoFocus={true}
+          className={styles.body}
+        ></textarea>
+      </div>
       <select
         name="category"
         value={category}

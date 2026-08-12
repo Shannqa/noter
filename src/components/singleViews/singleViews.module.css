@@ -1,28 +1,52 @@
+.viewHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(520px + 1rem);
+  /* position: relative; */
+}
+
+.menuContainer {
+  position: relative;
+}
+
 .note {
   border: 1px black solid;
   width: 520px;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
-  margin: 4px;
   padding: 4px;
-  width: 500px;
+  /* width: 500px; */
   line-height: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+input.title {
+  margin-bottom: 0.5rem;
 }
 
 .body {
-  margin: 4px;
+  /* margin: 4px; */
   padding: 4px;
-  width: 500px;
+  /* width: 500px; */
   height: 200px;
   line-height: 1.5rem;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: none;
 }
 
 .dateList {
   font-size: 0.8rem;
-  line-height: 1rem;
+  /* line-height: 1rem; */
 }
 
 .categories {
@@ -46,58 +70,10 @@
   background-color: rgb(196, 199, 245);
 }
 
-.edit-note {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px black solid;
-  width: 520px;
-  padding: 0.5rem;
-}
-
-.edit-note .note-title {
-  margin: 4px;
-  padding: 4px;
-  width: 500px;
-  line-height: 1.5rem;
-}
-
-.edit-note .note-body {
-  margin: 4px;
-  padding: 4px;
-  width: 500px;
-  height: 200px;
-  line-height: 1.5rem;
-}
-
 .edit-note .submit-button {
   width: 200px;
   margin: 0.5rem;
   padding: 0.2rem;
-}
-
-.add-note {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px black solid;
-  width: 520px;
-  padding: 0.5rem;
-}
-
-.add-note .note-title {
-  margin: 4px;
-  padding: 4px;
-  width: 500px;
-  line-height: 1.5rem;
-}
-
-.add-note .note-body {
-  margin: 4px;
-  padding: 4px;
-  width: 500px;
-  height: 200px;
-  line-height: 1.5rem;
 }
 
 .add-note .add-button {

@@ -1,4 +1,6 @@
 .menu {
+  position: absolute;
+  right: -2px;
   display: flex;
   flex-direction: column;
   width: 160px;
@@ -29,5 +31,10 @@
 
 .menu .item:active {
   background-color: rgb(252, 255, 240);
+  cursor: pointer;
+}
+
+.menuIcon:hover {
+  background-color: aliceblue;
   cursor: pointer;
 }
