@@ -1,13 +1,24 @@
+.headerContainer {
+  background-color: aliceblue;
+}
+
 .header {
   display: flex;
   align-items: center;
+  width: 1060px;
+  margin: 0 auto;
 }
 
 .home a {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   text-decoration: none;
   color: #222222;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0;
 }
 
 .home a:hover {

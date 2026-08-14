@@ -7,26 +7,10 @@
   background-color: rgb(246, 236, 255);
 }
 
-.main-menu button, .navbar button {
+.main-menu button,
+.navbar button {
   border: 0;
   background-color: unset;
-}
-
-.main-menu-icon {
-  width: 2rem;
-  height: 2rem;
-  font-size: 1.5rem;
-  margin-right: 8px;
-}
-
-.main-menu-icon:hover {
-  cursor: pointer;
-  background-color: azure;
-}
-
-.main-menu-icon:active {
-  cursor: pointer;
-  background-color: rgb(252, 255, 240);
 }
 
 .main-menu {
@@ -41,9 +25,9 @@
   padding: 4px;
 }
 
-.main-menu a.menu-item:link, 
-.main-menu a.menu-item:active, 
-.main-menu a.menu-item:hover, 
+.main-menu a.menu-item:link,
+.main-menu a.menu-item:active,
+.main-menu a.menu-item:hover,
 .main-menu a.menu-item:visited {
   color: black;
   text-decoration: none;

@@ -1,18 +1,16 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useParams, Link } from "react-router";
 import { AppContext } from "../../App";
-import NoteMenu from "./NoteMenu";
 import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
-import MenuIcon from "./MenuIcon";
 import DeleteNoteDialog from "../dialogs/DeleteNoteDialog";
+import SingleNoteMenu from "../singleNoteMenu/SingleNoteMenu";
 
 function ViewNote() {
   const { allNotes, categories } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === id);
   const [openDialog, setOpenDialog] = useState(false);
-  const [openNoteMenu, setOpenNoteMenu] = useState(false);
 
   if (!note) {
     return (
@@ -22,12 +20,6 @@ function ViewNote() {
     );
   }
 
-  // function handleMenu() {
-  //   setOpenNoteMenu(true);
-  // }
-
-  // console.log(note);
-
   const categoriesInNote = categories.filter((cat) =>
     note.categories.includes(cat.id),
   );
@@ -36,18 +28,13 @@ function ViewNote() {
     <SingleView title="View note">
       <div className={styles.viewHeading}>
         <h2>View Note</h2>
-        <div className={styles.menuContainer}>
-          <MenuIcon onClick={() => setOpenNoteMenu(!openNoteMenu)} />
-          {openNoteMenu && (
-            <NoteMenu
-              id={id}
-              edit={true}
-              bin={note.status == "bin" ? false : true}
-              archive={note.status == "archive" ? false : true}
-              setOpenDialog={() => setOpenDialog(true)}
-            />
-          )}
-        </div>
+        <SingleNoteMenu
+          id={id}
+          edit={true}
+          bin={note.status == "bin" ? false : true}
+          archive={note.status == "archive" ? false : true}
+          setOpenDialog={() => setOpenDialog(true)}
+        />
       </div>
 
       <div className={styles.note}>

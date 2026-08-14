@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router";
 import { AppContext } from "../../App";
-import NoteMenu from "./NoteMenu";
+import SingleNoteMenu from "../singleNoteMenu/SingleNoteMenu";
 import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
 
@@ -44,6 +44,17 @@ function EditNote() {
 
   return (
     <SingleView title="Edit note">
+      <div className={styles.viewHeading}>
+        <h2>Edit Note</h2>
+        <SingleNoteMenu
+          id={id}
+          view={true}
+          bin={note.status == "bin" ? false : true}
+          archive={note.status == "archive" ? false : true}
+          setOpenDialog={() => setOpenDialog(true)}
+        />
+      </div>
+
       <div className={styles.note}>
         <input
           type="text"
@@ -75,7 +86,6 @@ function EditNote() {
       <button onClick={(e) => editNote()} className={styles.button}>
         Submit
       </button>
-      <NoteMenu id={id} view={true} bin={true} />
     </SingleView>
   );
 }

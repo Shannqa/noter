@@ -2,6 +2,8 @@ import { Link } from "react-router";
 // import "./MainMenu.css";
 import { useState, useEffect, useRef } from "react";
 import MainMenuItems from "./MainMenuItems";
+import MenuIcon from "./MenuIcon";
+import menu from "../../assets/menu.svg";
 
 function MainMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,9 +43,9 @@ function MainMenu() {
 
   return (
     <div className="navbar" ref={node}>
-      <button className="main-menu-icon" onClick={toggleMenu}>
-        =
-      </button>
+      {/* <img src={menu} /> */}
+      <MenuIcon onClick={toggleMenu} />
+      {/* <button className="main-menu-icon" onClick={toggleMenu}></button> */}
       {menuOpen && <MainMenuItems menuOpen={menuOpen} onClick={toggleMenu} />}
     </div>
   );

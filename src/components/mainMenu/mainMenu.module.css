@@ -1,0 +1,16 @@
+.mainMenuIcon {
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 1.5rem;
+  margin-right: 4px;
+}
+
+.mainMenuIcon:hover {
+  cursor: pointer;
+  background-color: azure;
+}
+
+.mainMenuIcon:active {
+  cursor: pointer;
+  background-color: rgb(252, 255, 240);
+}

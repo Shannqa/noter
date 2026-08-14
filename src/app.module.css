@@ -14,7 +14,8 @@ body {
 }
 
 .outletBody {
-  margin: 4px 12px;
+  margin: 0 auto;
+  width: 1060px;
 }
 
 .aFont {
