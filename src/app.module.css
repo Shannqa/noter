@@ -11,11 +11,16 @@
 
 body {
   margin: 0;
+  background-color: #f2f9ff;
+}
+
+.page {
+  min-height: 100vh;
 }
 
 .outletBody {
   margin: 0 auto;
-  width: 1060px;
+  width: min(1200px, 100%);
 }
 
 .aFont {

@@ -39,7 +39,7 @@ function App() {
   }, [categories]);
 
   return (
-    <>
+    <div className={styles.page}>
       <AppContext
         value={{
           allNotes,
@@ -53,7 +53,7 @@ function App() {
           <Outlet />
         </div>
       </AppContext>
-    </>
+    </div>
   );
 }
 

@@ -3,6 +3,7 @@ import { useNavigate, useOutletContext } from "react-router";
 import { AppContext } from "../../App";
 import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
+import Button from "../button/Button";
 
 function AddNote() {
   const [title, setTitle] = useState("");
@@ -36,37 +37,43 @@ function AddNote() {
 
   return (
     <SingleView title="Add note">
+      <h2>Add note</h2>
       <div className={styles.note}>
+        <label for="title">Title</label>
         <input
+          id="title"
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className={styles.title}
         />
+        <label for="content">Content</label>
         <textarea
           placeholder="Note"
+          id="content"
           value={body}
           onChange={(e) => setBody(e.target.value)}
           autoFocus={true}
           className={styles.body}
         ></textarea>
+
+        <label for="category-select">Category</label>
+        <select
+          name="category"
+          id="category-select"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">Select category</option>
+          {categories.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        <Button onClick={addNewNote}>Submit</Button>
       </div>
-      <select
-        name="category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option value="">Select category</option>
-        {categories.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.name}
-          </option>
-        ))}
-      </select>
-      <button onClick={(e) => addNewNote()} className={styles.button}>
-        Submit
-      </button>
     </SingleView>
   );
 }

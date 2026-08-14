@@ -1,5 +1,5 @@
 .singleView {
-  width: 1000px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -23,24 +23,37 @@ h2 {
 }
 
 .note {
-  border: 1px black solid;
-  /* width: 520px; */
-  padding: 0.5rem;
+  border: none;
+  padding: 1.2rem 1rem;
   margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
+  border-radius: 4px;
+  background-color: #ffffff;
 }
 
 .title {
   padding: 4px;
-  /* width: 500px; */
   line-height: 1.5rem;
   font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
 }
 
 input.title {
-  margin-bottom: 0.5rem;
+  border: 1px #a4a4a4 solid;
+}
+
+label {
+  margin-bottom: 4px;
+}
+
+select {
+  padding: 8px;
+  border-radius: 4px;
+  /* margin: 0.5rem 0; */
+  border-color: #a4a4a4;
 }
 
 .body {
@@ -54,6 +67,9 @@ input.title {
 
 textarea {
   resize: none;
+  border-radius: 4px;
+  border-color: #a4a4a4;
+  margin-bottom: 0.5rem;
 }
 
 .dateList {
@@ -80,12 +96,6 @@ textarea {
 
 .categories li:hover {
   background-color: rgb(196, 199, 245);
-}
-
-.edit-note .submit-button {
-  width: 200px;
-  margin: 0.5rem;
-  padding: 0.2rem;
 }
 
 .add-note .add-button {
