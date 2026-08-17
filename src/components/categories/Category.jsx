@@ -3,78 +3,21 @@ import { useParams, Link } from "react-router";
 import { AppContext } from "../../App.jsx";
 import NoteList from "../noteList/NoteList.jsx";
 import CategoryMenu from "./CategoryMenu.jsx";
+import CategoryContent from "./CategoryContent.jsx";
 
 function Category() {
   const { allNotes, setAllNotes, categories, dispatchCategories } =
     useContext(AppContext);
-  const [editing, setEditing] = useState(false);
-  const { id } = useParams();
-  const notesInCategory = allNotes.filter((note) =>
-    note.categories.includes(id),
-  );
-  const category = categories.find((item) => item.id === id);
-  const [categoryName, setCategoryName] = useState(category.name || "");
-  const [error, setError] = useState("");
 
+  const { id } = useParams();
+  const category = categories.find((item) => item.id === parseInt(id));
   // console.log(allNotes);
   // console.log(notesInCategory);
 
-  function checkValidity() {
-    if (categoryName.trim().length === 0) {
-      return { valid: false, message: "Category name must not be empty" };
-    }
-    return { valid: true };
-  }
-
-  function saveCategory() {
-    const check = checkValidity();
-    if (!check.valid) {
-      setError(check.message);
-    } else {
-      setError("");
-      dispatchCategories({
-        type: "edit_category",
-        id: id,
-        name: categoryName,
-      });
-    }
-    setEditing(false);
-  }
-
-  function cancelRenaming() {
-    setEditing(false);
-    setCategoryName(category.name);
-    setError("");
-  }
-
   if (!category) {
-    return <p>Category not found.</p>;
+    return <p>Loading...</p>;
   }
-  return (
-    <>
-      <h2>
-        {editing ? (
-          <>
-            <input
-              value={categoryName}
-              onChange={(e) => setCategoryName(e.target.value)}
-            />
-            <button onClick={saveCategory}>Save</button>
-            <button onClick={cancelRenaming}>Cancel</button>
-          </>
-        ) : (
-          <span>{category.name}</span>
-        )}
-      </h2>
-
-      {notesInCategory.length === 0 ? (
-        <p>No notes in this category.</p>
-      ) : (
-        <NoteList notesArray={notesInCategory} />
-      )}
-      <CategoryMenu id={id} editing={editing} setEditing={setEditing} />
-    </>
-  );
+  return <CategoryContent category={category} />;
 }
 
 export default Category;

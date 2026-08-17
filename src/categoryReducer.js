@@ -9,6 +9,9 @@ function checkValidity(categories, action) {
 
 function categoryReducer(categories, action) {
   switch (action.type) {
+    case "set_categories": {
+      return action.categories;
+    }
     case "add_category": {
       return [
         ...categories,

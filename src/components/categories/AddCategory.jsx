@@ -24,21 +24,48 @@ function AddCategory() {
     }
   }
 
-  function handleSave() {
-    console.log(categories.length);
-    const check = checkValidity();
-    if (!check.valid) {
-      setError(check.message);
-    } else {
-      setError("");
-      const newId = self.crypto.randomUUID();
+  async function handleSave() {
+    try {
+      const response = await fetch("http://localhost:3000/category", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          userId: 4,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add category");
+      }
+      const category = await response.json();
+      // console.log(category);
       dispatchCategories({
         type: "add_category",
-        id: newId,
-        name: name,
+        id: category.id,
+        name: category.name,
       });
       setName("");
+    } catch (err) {
+      console.log(err);
     }
+
+    // console.log(categories.length);
+    // const check = checkValidity();
+    // if (!check.valid) {
+    //   setError(check.message);
+    // } else {
+    //   setError("");
+    //   const newId = self.crypto.randomUUID();
+    //   dispatchCategories({
+    //     type: "add_category",
+    //     id: newId,
+    //     name: name,
+    //   });
+    //   setName("");
+    // }
   }
 
   function handleCancel() {

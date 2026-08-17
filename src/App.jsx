@@ -20,23 +20,37 @@ function App() {
     const initialNotes = JSON.parse(savedNotes);
     return initialNotes || [];
   });
-  const [categories, dispatchCategories] = useReducer(
-    categoryReducer,
-    null,
-    () => {
-      const savedCategories = localStorage.getItem("categories");
-      const initialCategories = JSON.parse(savedCategories);
-      return initialCategories || [];
-    },
-  );
+  const [categories, dispatchCategories] = useReducer(categoryReducer, []);
 
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(allNotes));
-  }, [allNotes]);
+    fetch("http://localhost:3000/category?userId=4")
+      .then((res) => res.json())
+      .then((body) => {
+        console.log("cat ", body);
+        dispatchCategories({
+          type: "set_categories",
+          categories: body,
+        });
+        // if (body.success) {
+        //   const noteId = body.id;
+        //   navigate(`/notes/${noteId}`);
+        // } else {
+        //   // there are errors
+        //   console.log(body);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // localStorage.setItem("categories", JSON.stringify(categories));
+  }, []);
 
-  useEffect(() => {
-    localStorage.setItem("categories", JSON.stringify(categories));
-  }, [categories]);
+  // useEffect(() => {
+  //   localStorage.setItem("notes", JSON.stringify(allNotes));
+  // }, [allNotes]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("categories", JSON.stringify(categories));
+  // }, [categories]);
 
   return (
     <div className={styles.page}>

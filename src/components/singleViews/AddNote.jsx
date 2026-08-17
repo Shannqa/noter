@@ -20,14 +20,39 @@ function AddNote() {
     const newId = self.crypto.randomUUID();
     const addedDate = Date.now();
 
-    dispatch({
-      type: "add_note",
-      id: newId,
-      title: title,
-      body: body,
-      categories: !category ? [] : [category],
-      addedDate: addedDate,
-    });
+    fetch("http://localhost:3000/note", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        body: body,
+        userId: 4,
+      }),
+    })
+      .then((res) => res.json())
+      .then((body) => {
+        if (body.success) {
+          const noteId = body.id;
+          navigate(`/notes/${noteId}`);
+        } else {
+          // there are errors
+          console.log(body);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // dispatch({
+    //   type: "add_note",
+    //   id: newId,
+    //   title: title,
+    //   body: body,
+    //   categories: !category ? [] : [category],
+    //   addedDate: addedDate,
+    // });
 
     setTitle("");
     setBody("");
@@ -39,7 +64,7 @@ function AddNote() {
     <SingleView title="Add note">
       <h2>Add note</h2>
       <div className={styles.note}>
-        <label for="title">Title</label>
+        <label htmlFor="title">Title</label>
         <input
           id="title"
           type="text"
@@ -48,7 +73,7 @@ function AddNote() {
           onChange={(e) => setTitle(e.target.value)}
           className={styles.title}
         />
-        <label for="content">Content</label>
+        <label htmlFor="content">Content</label>
         <textarea
           placeholder="Note"
           id="content"
@@ -58,7 +83,7 @@ function AddNote() {
           className={styles.body}
         ></textarea>
 
-        <label for="category-select">Category</label>
+        <label htmlFor="category-select">Category</label>
         <select
           name="category"
           id="category-select"
