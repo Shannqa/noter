@@ -9,13 +9,13 @@ import SingleNoteMenu from "../singleNoteMenu/SingleNoteMenu";
 function ViewNote() {
   const { allNotes, categories } = useContext(AppContext);
   const { id } = useParams();
-  const note = allNotes.find((item) => item.id === id);
+  const note = allNotes.find((item) => item.id === parseInt(id));
   const [openDialog, setOpenDialog] = useState(false);
 
   if (!note) {
     return (
       <SingleView title="View note">
-        <p>No note found.</p>
+        <p>Loading...</p>
       </SingleView>
     );
   }
@@ -23,7 +23,7 @@ function ViewNote() {
   const categoriesInNote = categories.filter((cat) =>
     note.categories.includes(cat.id),
   );
-
+  /**** ADD: new component with the content of the note which is rendered once the notes are fetched ****/
   return (
     <SingleView title="View note">
       <div className={styles.viewHeading}>

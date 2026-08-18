@@ -15,42 +15,40 @@ export const AppContext = createContext({
 });
 
 function App() {
-  const [allNotes, dispatchNotes] = useReducer(noteReducer, null, () => {
-    const savedNotes = localStorage.getItem("notes");
-    const initialNotes = JSON.parse(savedNotes);
-    return initialNotes || [];
-  });
+  const [allNotes, dispatchNotes] = useReducer(noteReducer, []);
   const [categories, dispatchCategories] = useReducer(categoryReducer, []);
 
+  // fetch categories
   useEffect(() => {
     fetch("http://localhost:3000/category?userId=4")
       .then((res) => res.json())
       .then((body) => {
-        console.log("cat ", body);
+        console.log("categories fetched ", body);
         dispatchCategories({
           type: "set_categories",
           categories: body,
         });
-        // if (body.success) {
-        //   const noteId = body.id;
-        //   navigate(`/notes/${noteId}`);
-        // } else {
-        //   // there are errors
-        //   console.log(body);
       })
       .catch((err) => {
         console.log(err);
       });
-    // localStorage.setItem("categories", JSON.stringify(categories));
   }, []);
 
-  // useEffect(() => {
-  //   localStorage.setItem("notes", JSON.stringify(allNotes));
-  // }, [allNotes]);
-
-  // useEffect(() => {
-  //   localStorage.setItem("categories", JSON.stringify(categories));
-  // }, [categories]);
+  // fetch notes
+  useEffect(() => {
+    fetch("http://localhost:3000/note?userId=4")
+      .then((res) => res.json())
+      .then((body) => {
+        console.log("notes fetched ", body);
+        dispatchNotes({
+          type: "set_notes",
+          notes: body,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className={styles.page}>

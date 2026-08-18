@@ -6,18 +6,21 @@ import AddButton from "../addButon/AddButton";
 
 function ViewAllNotes() {
   const { allNotes, setAllNotes } = useContext(AppContext);
-  const notesActive = allNotes.filter((note) => note.status === "active");
+  const notesActive = allNotes.filter((note) => note.status === "ACTIVE");
 
-  function clearStorage() {
-    localStorage.clear();
-    setAllNotes([]);
+  if (!allNotes) {
+    return (
+      <>
+        <h2>All notes</h2>
+        <p>Loading...</p>
+      </>
+    );
   }
 
   return (
     <>
       <h2>All notes</h2>
-      <NoteList notesArray={notesActive} />
-      <button onClick={clearStorage}>Clear storage</button>
+      <NoteList notesArray={notesActive} />,
       <AddButton />
     </>
   );

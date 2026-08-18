@@ -1,17 +1,21 @@
 function noteReducer(allNotes, action) {
   switch (action.type) {
+    case "set_notes": {
+      return action.notes;
+    }
     case "add_note": {
       return [
         ...allNotes,
         {
+          // categories: !action.category ? [] : [action.category],
           id: action.id,
           title: action.title,
           body: action.body,
-          categories: !action.category ? [] : [action.category],
-          status: "active",
-          createdAt: action.addedDate,
-          lastEditedAt: action.addedDate,
-          deletedAt: null,
+          userId: action.userId,
+          createdAt: action.createdAt,
+          updatedAt: action.updatedAt,
+          status: action.status,
+          categories: action.categories,
         },
       ];
     }
@@ -34,7 +38,7 @@ function noteReducer(allNotes, action) {
         if (item.id === action.id) {
           return {
             ...item,
-            status: "bin",
+            status: "BIN",
             deletedAt: action.deletedDate,
           };
         }
@@ -46,7 +50,7 @@ function noteReducer(allNotes, action) {
         if (item.id === action.id) {
           return {
             ...item,
-            status: "active",
+            status: "ACTIVE",
             deletedAt: null,
           };
         }
@@ -61,7 +65,7 @@ function noteReducer(allNotes, action) {
         if (item.id === action.id) {
           return {
             ...item,
-            status: "archive",
+            status: "ARCHIVE",
             lastEditedAt: action.lastEditedAt,
           };
         }
@@ -73,7 +77,7 @@ function noteReducer(allNotes, action) {
         if (item.id === action.id) {
           return {
             ...item,
-            status: "active",
+            status: "ACTIVE",
             lastEditedAt: action.lastEditedAt,
           };
         }

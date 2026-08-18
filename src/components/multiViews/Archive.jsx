@@ -5,7 +5,7 @@ import NoteList from "../noteList/NoteList";
 
 function Archive() {
   const { allNotes, setAllNotes } = useContext(AppContext);
-  const notesInArchive = allNotes.filter((note) => note.status === "archive");
+  const notesInArchive = allNotes.filter((note) => note.status === "BIN");
 
   return (
     <>

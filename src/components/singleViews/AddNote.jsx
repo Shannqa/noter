@@ -9,55 +9,49 @@ function AddNote() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
-  const {
-    allNotes,
-    categories,
-    dispatchNotes: dispatch,
-  } = useContext(AppContext);
+  const { allNotes, categories, dispatchNotes } = useContext(AppContext);
   const navigate = useNavigate();
 
-  function addNewNote() {
-    const newId = self.crypto.randomUUID();
-    const addedDate = Date.now();
+  async function addNewNote() {
+    // const newId = self.crypto.randomUUID();
+    // const addedDate = Date.now();
 
-    fetch("http://localhost:3000/note", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-        body: body,
-        userId: 4,
-      }),
-    })
-      .then((res) => res.json())
-      .then((body) => {
-        if (body.success) {
-          const noteId = body.id;
-          navigate(`/notes/${noteId}`);
-        } else {
-          // there are errors
-          console.log(body);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+    try {
+      const response = await fetch("http://localhost:3000/note", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          body: body,
+          userId: 4,
+        }),
       });
-    // dispatch({
-    //   type: "add_note",
-    //   id: newId,
-    //   title: title,
-    //   body: body,
-    //   categories: !category ? [] : [category],
-    //   addedDate: addedDate,
-    // });
-
-    setTitle("");
-    setBody("");
-    setCategory("");
-    return navigate("/note/" + newId);
+      if (!response.ok) {
+        throw new Error("Failed to add note");
+      }
+      const note = await response.json();
+      console.log(note);
+      dispatchNotes({
+        type: "add_note",
+        id: note.id,
+        title: note.title,
+        body: note.body,
+        userId: note.userId,
+        createdAt: note.createdAt,
+        updatedAt: note.updatedAt,
+        status: note.status,
+        categories: note.categories,
+      });
+      setTitle("");
+      setBody("");
+      setCategory("");
+      navigate(`/note/${note.id}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
