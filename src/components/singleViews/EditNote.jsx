@@ -6,32 +6,57 @@ import SingleView from "./SingleView";
 import styles from "./singleViews.module.css";
 
 function EditNote() {
-  const {
-    allNotes,
-    categories,
-    dispatchNotes: dispatch,
-  } = useContext(AppContext);
+  const { allNotes, categories, dispatchNotes } = useContext(AppContext);
   const { id } = useParams();
-  const note = allNotes.find((item) => item.id === id);
+  const note = allNotes.find((item) => item.id === parseInt(id));
+
+  if (!note) {
+    return (
+      <SingleView title="View note">
+        <p>Loading...</p>
+      </SingleView>
+    );
+  }
+
   const [title, setTitle] = useState(note.title || "");
   const [body, setBody] = useState(note.body || "");
-  const [category, setCategory] = useState(note.categories[0] || "");
+  const [category, setCategory] = useState(note.category || "");
   const navigate = useNavigate();
 
-  // console.log(note);
-  function editNote() {
-    const date = Date.now();
-
-    dispatch({
-      type: "edit_note",
-      id: id,
-      title: title,
-      body: body,
-      categories: !category ? [] : [category],
-      date: date,
-    });
-
-    return navigate("/note/" + id);
+  async function editNote() {
+    try {
+      const response = await fetch(`http://localhost:3000/note/${id}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          body: body,
+          category: category,
+          userId: 4,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to edit note");
+      }
+      const note = await response.json();
+      console.log(note);
+      dispatchNotes({
+        type: "edit_note",
+        title: note.title,
+        body: note.body,
+        updatedAt: note.updatedAt,
+        category: note.category,
+      });
+      setTitle("");
+      setBody("");
+      setCategory("");
+      navigate(`/note/${note.id}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   if (!note) {

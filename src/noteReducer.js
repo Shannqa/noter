@@ -27,7 +27,7 @@ function noteReducer(allNotes, action) {
             title: action.title,
             body: action.body,
             categories: action.categories,
-            lastEditedAt: action.date,
+            updatedAt: action.updatedAt,
           };
         }
         return item;

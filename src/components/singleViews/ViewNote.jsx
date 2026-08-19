@@ -20,9 +20,6 @@ function ViewNote() {
     );
   }
 
-  const categoriesInNote = categories.filter((cat) =>
-    note.categories.includes(cat.id),
-  );
   /**** ADD: new component with the content of the note which is rendered once the notes are fetched ****/
   return (
     <SingleView title="View note">
@@ -41,14 +38,8 @@ function ViewNote() {
         <div className={styles.title}>{note.title}</div>
         <div className={styles.body}>{note.body}</div>
       </div>
-      {categoriesInNote.length > 0 && (
-        <ul className={styles.categories}>
-          {categoriesInNote.map((item) => (
-            <li key={item.id}>
-              <Link to={`/categories/${item.id}`}>{item.name}</Link>
-            </li>
-          ))}
-        </ul>
+      {note.category && (
+        <Link to={`/categories/${note.category.id}`}>{note.category.name}</Link>
       )}
       <div className={styles.dateList}>
         <p>Created at: {new Date(note.createdAt).toLocaleString("pl-PL")}</p>

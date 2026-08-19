@@ -8,13 +8,12 @@ import Button from "../button/Button";
 function AddNote() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(null);
   const { allNotes, categories, dispatchNotes } = useContext(AppContext);
   const navigate = useNavigate();
 
   async function addNewNote() {
-    // const newId = self.crypto.randomUUID();
-    // const addedDate = Date.now();
+    /* Fix a problem when category isn't selected, check how to skip a field */
 
     try {
       const response = await fetch("http://localhost:3000/note", {
@@ -27,6 +26,7 @@ function AddNote() {
           title: title,
           body: body,
           userId: 4,
+          categoryId: category,
         }),
       });
       if (!response.ok) {
@@ -43,7 +43,7 @@ function AddNote() {
         createdAt: note.createdAt,
         updatedAt: note.updatedAt,
         status: note.status,
-        categories: note.categories,
+        category: note.category,
       });
       setTitle("");
       setBody("");
