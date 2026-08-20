@@ -12,12 +12,16 @@ export const AppContext = createContext({
   dispatchNotes: null,
   categories: [],
   dispatchCategories: null,
+  categoriesLoaded: false,
+  notesLoaded: false
 });
 
 function App() {
   const [allNotes, dispatchNotes] = useReducer(noteReducer, []);
   const [categories, dispatchCategories] = useReducer(categoryReducer, []);
-
+  const [notesLoaded, setNotesLoaded] = useState(false);
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false)
+    
   // fetch categories
   useEffect(() => {
     fetch("http://localhost:3000/category?userId=4")
@@ -28,6 +32,7 @@ function App() {
           type: "set_categories",
           categories: body,
         });
+        setCategoriesLoaded(true);
       })
       .catch((err) => {
         console.log(err);
@@ -44,6 +49,7 @@ function App() {
           type: "set_notes",
           notes: body,
         });
+        setNotesLoaded(true);
       })
       .catch((err) => {
         console.log(err);
@@ -58,6 +64,8 @@ function App() {
           categories,
           dispatchNotes,
           dispatchCategories,
+          categoriesLoaded,
+          notesLoaded
         }}
       >
         <Header />
