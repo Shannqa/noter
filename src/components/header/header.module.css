@@ -22,6 +22,11 @@ h1 {
   margin: 0;
 }
 
+.rightSide {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
 .home a:hover {
   /* color: rgb(80, 80, 80); */
 }
@@ -29,13 +34,19 @@ h1 {
 .home {
   border-bottom: 2px transparent solid;
   padding: 2px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.home:hover {
+.h1:hover,
+.rightSide:hover {
   border-bottom: 2px #222222 solid;
 }
 
-.home:active {
+.h1:active,
+.rightSideh1:hover {
   border-bottom: 2px #222222 solid;
   background-color: rgb(250, 248, 248);
 }

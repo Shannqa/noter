@@ -1,33 +1,31 @@
 import { useState, useContext } from "react";
 import { useParams } from "react-router";
 import { AppContext } from "../../App";
-import ViewNote from "./ViewNote.jsx";
+import ViewContent from "./ViewContent.jsx";
 import styles from "./singleViews.module.css";
 
-function ViewWrapper() {
+function ViewNote() {
   const { allNotes, categories, notesLoaded } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === parseInt(id));
-  
+  console.log(note);
   if (!notesLoaded) {
-    return(
+    return (
       <div className={styles.singleView}>
         <h2>View Note</h2>
         <p>Loading...</p>
       </div>
     );
   } else if (!note) {
-    return(
+    return (
       <div className={styles.singleView}>
         <h2>View Note</h2>
         <p>Note not found.</p>
       </div>
-    )
+    );
   }
-  
-  return(
-    <ViewNote note={note} />
-  )
+
+  return <ViewContent note={note} />;
 }
 
-export default ViewWrapper;
+export default ViewNote;

@@ -11,6 +11,8 @@ import Bin from "./components/multiViews/Bin.jsx";
 import Category from "./components/categories/Category.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Settings from "./components/settings/Settings.jsx";
+import SignUp from "./components/login/SignUp.jsx";
+import LogIn from "./components/login/LogIn.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
       {
         path: "settings",
         element: <Settings />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
+      },
+      {
+        path: "login",
+        element: <LogIn />,
       },
     ],
   },

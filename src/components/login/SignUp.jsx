@@ -1,0 +1,53 @@
+import { useState } from "react";
+import styles from "./login.module.css";
+
+function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function sendForm(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/user/signup", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to sign up");
+      }
+      const result = await response.json();
+      // console.log(result);
+      // setTitle("");
+      // setBody("");
+      // setCategory("");
+      // navigate(`/note/${result.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  return (
+    <div>
+      <form className={styles.login}>
+        <label htmlFor="name">Username</label>
+        <input name="name" onChange={(e) => setName(e.target.value)} />
+        <label htmlFor="email">Email</label>
+        <input name="email" onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor="password">Password</label>
+        <input name="password" onChange={(e) => setPassword(e.target.value)} />
+        <button onClick={(e) => sendForm(e)}>Sign up</button>
+      </form>
+    </div>
+  );
+}
+
+export default SignUp;

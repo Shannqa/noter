@@ -7,22 +7,22 @@ function AddCategory() {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
 
-  function checkValidity() {
-    if (name.trim().length == 0) {
-      return { valid: false, message: "Category name must not be empty" };
-    } else if (categories.length > 0) {
-      if (categories.some((item) => item.name === name)) {
-        return {
-          valid: false,
-          message: "Category with that name already exists",
-        };
-      } else {
-        return { valid: true };
-      }
-    } else {
-      return { valid: true };
-    }
-  }
+  // function checkValidity() {
+  //   if (name.trim().length == 0) {
+  //     return { valid: false, message: "Category name must not be empty" };
+  //   } else if (categories.length > 0) {
+  //     if (categories.some((item) => item.name === name)) {
+  //       return {
+  //         valid: false,
+  //         message: "Category with that name already exists",
+  //       };
+  //     } else {
+  //       return { valid: true };
+  //     }
+  //   } else {
+  //     return { valid: true };
+  //   }
+  // }
 
   async function handleSave() {
     try {

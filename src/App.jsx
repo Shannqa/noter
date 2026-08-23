@@ -13,47 +13,68 @@ export const AppContext = createContext({
   categories: [],
   dispatchCategories: null,
   categoriesLoaded: false,
-  notesLoaded: false
+  notesLoaded: false,
 });
 
 function App() {
+  const [user, setUser] = useState(null);
   const [allNotes, dispatchNotes] = useReducer(noteReducer, []);
   const [categories, dispatchCategories] = useReducer(categoryReducer, []);
   const [notesLoaded, setNotesLoaded] = useState(false);
-  const [categoriesLoaded, setCategoriesLoaded] = useState(false)
-    
-  // fetch categories
-  useEffect(() => {
-    fetch("http://localhost:3000/category?userId=4")
-      .then((res) => res.json())
-      .then((body) => {
-        console.log("categories fetched ", body);
-        dispatchCategories({
-          type: "set_categories",
-          categories: body,
-        });
-        setCategoriesLoaded(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
-  // fetch notes
   useEffect(() => {
-    fetch("http://localhost:3000/note?userId=4")
-      .then((res) => res.json())
-      .then((body) => {
-        console.log("notes fetched ", body);
-        dispatchNotes({
-          type: "set_notes",
-          notes: body,
-        });
-        setNotesLoaded(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    async function loadDb() {
+      try {
+        const [userRes, notesRes, categoriesRes] = await Promise.all([
+          fetch("http://localhost:3000/user/auth", {
+            credentials: "include",
+          }),
+          fetch("http://localhost:3000/note?userId=4", {
+            credentials: "include",
+          }),
+          fetch("http://localhost:3000/category?userId=4", {
+            credentials: "include",
+          }),
+        ]);
+
+        if (!userRes.ok) {
+          throw new Error("Failed to authenticate user");
+        } else {
+          const userJson = await userRes.json();
+          setUser(userJson);
+        }
+
+        if (!notesRes.ok) {
+          throw new Error("Failed to fetch notes");
+        } else {
+          const notesJson = await notesRes.json();
+          console.log(notesJson);
+          dispatchNotes({
+            type: "set_notes",
+            notes: notesJson,
+          });
+          setNotesLoaded(true);
+        }
+
+        if (!categoriesRes.ok) {
+          throw new Error("Failed to fetch categories");
+        } else {
+          const categoriesJson = await categoriesRes.json();
+          dispatchCategories({
+            type: "set_categories",
+            categories: categoriesJson,
+          });
+          setCategoriesLoaded(true);
+        }
+
+        setLoaded(true);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    loadDb();
   }, []);
 
   return (
@@ -65,7 +86,7 @@ function App() {
           dispatchNotes,
           dispatchCategories,
           categoriesLoaded,
-          notesLoaded
+          notesLoaded,
         }}
       >
         <Header />

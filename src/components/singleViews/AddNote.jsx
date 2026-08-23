@@ -23,29 +23,29 @@ function AddNote() {
           title: title,
           body: body,
           userId: 4,
-          categoryId: category,
+          categoryId: parseInt(category),
         }),
       });
       if (!response.ok) {
         throw new Error("Failed to add note");
       }
-      const note = await response.json();
-      console.log(note);
+      const result = await response.json();
+      console.log(result);
       dispatchNotes({
         type: "add_note",
-        id: note.id,
-        title: note.title,
-        body: note.body,
-        userId: note.userId,
-        createdAt: note.createdAt,
-        updatedAt: note.updatedAt,
-        status: note.status,
-        category: note.category,
+        id: result.id,
+        title: result.title,
+        body: result.body,
+        userId: result.userId,
+        createdAt: result.createdAt,
+        updatedAt: result.updatedAt,
+        status: result.status,
+        category: result.category,
       });
       setTitle("");
       setBody("");
       setCategory("");
-      navigate(`/note/${note.id}`);
+      navigate(`/note/${result.id}`);
     } catch (err) {
       console.log(err);
     }

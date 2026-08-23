@@ -18,6 +18,7 @@ function categoryReducer(categories, action) {
         {
           id: action.id,
           name: action.name,
+          userId: action.userId,
         },
       ];
     }

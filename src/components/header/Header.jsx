@@ -11,6 +11,14 @@ function Header() {
           <h1>
             <Link to={"/"}>Home</Link>
           </h1>
+          <div className={styles.rightSide}>
+            <span>
+              <Link to={"/signup"}>Sign Up</Link>
+            </span>
+            <span>
+              <Link to={"/login"}>Log In</Link>
+            </span>
+          </div>
         </div>
       </div>
     </div>

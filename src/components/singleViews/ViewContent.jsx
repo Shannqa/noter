@@ -5,12 +5,11 @@ import styles from "./singleViews.module.css";
 import DeleteNoteDialog from "../dialogs/DeleteNoteDialog";
 import SingleNoteMenu from "../singleNoteMenu/SingleNoteMenu";
 
-function ViewNote(note) {
+function ViewContent({ note }) {
   const { allNotes, categories } = useContext(AppContext);
   const { id } = useParams();
-  const note = allNotes.find((item) => item.id === parseInt(id));
   const [openDialog, setOpenDialog] = useState(false);
-
+  console.log(note.category);
   return (
     <div className={styles.singleView}>
       <div className={styles.viewHeading}>
@@ -18,8 +17,8 @@ function ViewNote(note) {
         <SingleNoteMenu
           id={id}
           edit={true}
-          bin={note.status == "bin" ? false : true}
-          archive={note.status == "archive" ? false : true}
+          bin={note.status == "BIN" ? false : true}
+          archive={note.status == "ARCHIVE" ? false : true}
           setOpenDialog={() => setOpenDialog(true)}
         />
       </div>
@@ -34,7 +33,7 @@ function ViewNote(note) {
       <div className={styles.dateList}>
         <p>Created at: {new Date(note.createdAt).toLocaleString("pl-PL")}</p>
         <p>
-          Last edited at: {new Date(note.lastEditedAt).toLocaleString("pl-PL")}
+          Last edited at: {new Date(note.updatedAt).toLocaleString("pl-PL")}
         </p>
       </div>
 
@@ -47,4 +46,4 @@ function ViewNote(note) {
   );
 }
 
-export default ViewNote;
+export default ViewContent;

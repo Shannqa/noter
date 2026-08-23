@@ -15,7 +15,7 @@ function noteReducer(allNotes, action) {
           createdAt: action.createdAt,
           updatedAt: action.updatedAt,
           status: action.status,
-          categories: action.categories,
+          category: action.category,
         },
       ];
     }
@@ -26,7 +26,7 @@ function noteReducer(allNotes, action) {
             ...item,
             title: action.title,
             body: action.body,
-            categories: action.categories,
+            category: action.category,
             updatedAt: action.updatedAt,
           };
         }

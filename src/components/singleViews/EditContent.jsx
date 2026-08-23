@@ -4,7 +4,7 @@ import { AppContext } from "../../App";
 import SingleNoteMenu from "../singleNoteMenu/SingleNoteMenu";
 import styles from "./singleViews.module.css";
 
-function EditNote(note) {
+function EditContent({ note }) {
   const { allNotes, categories, dispatchNotes } = useContext(AppContext);
   const { id } = useParams();
   const [title, setTitle] = useState(note.title || null);
@@ -15,29 +15,31 @@ function EditNote(note) {
   async function editNote() {
     try {
       const response = await fetch(`http://localhost:3000/note/${id}`, {
-        method: "POST",
+        method: "PATCH",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          id: parseInt(id),
           title: title,
           body: body,
-          category: category,
+          categoryId: parseInt(category),
           userId: 4,
         }),
       });
       if (!response.ok) {
         throw new Error("Failed to edit note");
       }
-      const note = await response.json();
+      const result = await response.json();
       console.log(note);
       dispatchNotes({
         type: "edit_note",
-        title: note.title,
-        body: note.body,
-        updatedAt: note.updatedAt,
-        category: note.category,
+        id: result.id,
+        title: result.title,
+        body: result.body,
+        updatedAt: result.updatedAt,
+        category: result.category,
       });
       setTitle("");
       setBody("");
@@ -79,7 +81,7 @@ function EditNote(note) {
       </div>
       <select
         name="category"
-        value={category}
+        value={category.id}
         onChange={(e) => setCategory(e.target.value)}
       >
         <option value="">Select category</option>
@@ -96,4 +98,4 @@ function EditNote(note) {
   );
 }
 
-export default EditNote;
+export default EditContent;
