@@ -45,6 +45,7 @@ function CategoryContent({ category }) {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
+          credentials: "include",
           body: JSON.stringify({
             id: category.id,
             name: categoryName,

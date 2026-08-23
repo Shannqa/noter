@@ -46,7 +46,9 @@ function MainMenu() {
       {/* <img src={menu} /> */}
       <MenuIcon onClick={toggleMenu} />
       {/* <button className="main-menu-icon" onClick={toggleMenu}></button> */}
-      {menuOpen && <MainMenuItems menuOpen={menuOpen} onClick={toggleMenu} />}
+      {menuOpen && (
+        <MainMenuItems menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      )}
     </div>
   );
 }

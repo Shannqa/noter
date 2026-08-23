@@ -19,6 +19,7 @@ function AddNote() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           title: title,
           body: body,

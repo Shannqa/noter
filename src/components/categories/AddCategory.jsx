@@ -32,6 +32,7 @@ function AddCategory() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           name: name,
           userId: 4,

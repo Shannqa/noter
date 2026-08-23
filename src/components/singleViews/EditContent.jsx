@@ -20,6 +20,7 @@ function EditContent({ note }) {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           id: parseInt(id),
           title: title,

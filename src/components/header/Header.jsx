@@ -1,8 +1,15 @@
 import MainMenu from "../mainMenu/MainMenu";
 import styles from "./header.module.css";
 import { Link } from "react-router";
+import { useContext } from "react";
+import { AppContext } from "../../App";
+import RightSide from "./RightSide";
 
 function Header() {
+  const { user } = useContext(AppContext);
+
+  // console.log("Header user:", user);
+
   return (
     <div className={styles.headerContainer}>
       <div className={styles.header}>
@@ -11,14 +18,7 @@ function Header() {
           <h1>
             <Link to={"/"}>Home</Link>
           </h1>
-          <div className={styles.rightSide}>
-            <span>
-              <Link to={"/signup"}>Sign Up</Link>
-            </span>
-            <span>
-              <Link to={"/login"}>Log In</Link>
-            </span>
-          </div>
+          <RightSide user={user} />
         </div>
       </div>
     </div>

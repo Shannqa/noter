@@ -3,6 +3,9 @@ function noteReducer(allNotes, action) {
     case "set_notes": {
       return action.notes;
     }
+    case "reset": {
+      return [];
+    }
     case "add_note": {
       return [
         ...allNotes,

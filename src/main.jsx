@@ -5,7 +5,7 @@ import ViewNote from "./components/singleViews/ViewNote.jsx";
 import EditNote from "./components/singleViews/EditNote.jsx";
 import AddNote from "./components/singleViews/AddNote.jsx";
 import App from "./App.jsx";
-import ViewAllNotes from "./components/multiViews/ViewAllNotes.jsx";
+import ActiveNotes from "./components/multiViews/ActiveNotes.jsx";
 import Archive from "./components/multiViews/Archive.jsx";
 import Bin from "./components/multiViews/Bin.jsx";
 import Category from "./components/categories/Category.jsx";
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ViewAllNotes />,
+        element: <ActiveNotes />,
       },
       {
         path: "note/:id",

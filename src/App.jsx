@@ -8,6 +8,8 @@ import noteReducer from "./noteReducer";
 import categoryReducer from "./categoryReducer";
 
 export const AppContext = createContext({
+  user: null,
+  setUser: () => {},
   allNotes: [],
   dispatchNotes: null,
   categories: [],
@@ -25,49 +27,62 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    async function checkAuth() {
+      try {
+        const response = await fetch("http://localhost:3000/user/auth", {
+          credentials: "include",
+        });
+        if (!response.ok) {
+          throw new Error("Failed to authenticate user");
+        }
+        const result = await response.json();
+        // console.log("result log ", result);
+        setUser(result);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    checkAuth();
+  }, []);
+
+  useEffect(() => {
+    if (!user) {
+      dispatchNotes({ type: "reset" });
+      dispatchCategories({ type: "reset" });
+      return;
+    }
     async function loadDb() {
       try {
-        const [userRes, notesRes, categoriesRes] = await Promise.all([
-          fetch("http://localhost:3000/user/auth", {
+        const [notesRes, categoriesRes] = await Promise.all([
+          fetch("http://localhost:3000/note", {
             credentials: "include",
           }),
-          fetch("http://localhost:3000/note?userId=4", {
-            credentials: "include",
-          }),
-          fetch("http://localhost:3000/category?userId=4", {
+          fetch("http://localhost:3000/category", {
             credentials: "include",
           }),
         ]);
 
-        if (!userRes.ok) {
-          throw new Error("Failed to authenticate user");
-        } else {
-          const userJson = await userRes.json();
-          setUser(userJson);
-        }
-
         if (!notesRes.ok) {
           throw new Error("Failed to fetch notes");
-        } else {
-          const notesJson = await notesRes.json();
-          console.log(notesJson);
-          dispatchNotes({
-            type: "set_notes",
-            notes: notesJson,
-          });
-          setNotesLoaded(true);
         }
-
         if (!categoriesRes.ok) {
           throw new Error("Failed to fetch categories");
-        } else {
-          const categoriesJson = await categoriesRes.json();
-          dispatchCategories({
-            type: "set_categories",
-            categories: categoriesJson,
-          });
-          setCategoriesLoaded(true);
         }
+
+        const [notesJson, categoriesJson] = await Promise.all([
+          notesRes.json(),
+          categoriesRes.json(),
+        ]);
+
+        dispatchNotes({
+          type: "set_notes",
+          notes: notesJson,
+        });
+
+        dispatchCategories({
+          type: "set_categories",
+          categories: categoriesJson,
+        });
 
         setLoaded(true);
       } catch (err) {
@@ -75,12 +90,14 @@ function App() {
       }
     }
     loadDb();
-  }, []);
+  }, [user]);
 
   return (
     <div className={styles.page}>
       <AppContext
         value={{
+          user,
+          setUser,
           allNotes,
           categories,
           dispatchNotes,

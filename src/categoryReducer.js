@@ -12,6 +12,9 @@ function categoryReducer(categories, action) {
     case "set_categories": {
       return action.categories;
     }
+    case "reset": {
+      return [];
+    }
     case "add_category": {
       return [
         ...categories,

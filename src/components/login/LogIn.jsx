@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "./login.module.css";
 import { useNavigate } from "react-router";
+import { AppContext } from "../../App.jsx";
+
 function LogIn() {
+  const { setUser } = useContext(AppContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -25,12 +28,11 @@ function LogIn() {
         throw new Error("Failed to log in");
       }
       const result = await response.json();
+      // console.log("result", result);
+      setUser(result.user);
+      setName("");
+      setPassword("");
       navigate("/");
-      console.log("result", result);
-      // setTitle("");
-      // setBody("");
-      // setCategory("");
-      // navigate(`/note/${result.id}`);
     } catch (err) {
       console.log(err);
     }
