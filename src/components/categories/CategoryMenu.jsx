@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import styles from "./noteMenu.module.css";
 
 function CategoryMenu({ id, editing, setEditing }) {

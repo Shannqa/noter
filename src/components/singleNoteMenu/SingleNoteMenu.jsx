@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import SingleNoteMenuItems from "./SingleNoteMenuItems";
 import MenuIcon from "./MenuIcon";
 import styles from "./singleNoteMenu.module.css";

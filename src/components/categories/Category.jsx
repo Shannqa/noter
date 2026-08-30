@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useParams, Link } from "react-router";
-import { AppContext } from "../../App.jsx";
+import { AppContext } from "../../ProtectedLayout";
 import NoteList from "../noteList/NoteList.jsx";
 import CategoryMenu from "./CategoryMenu.jsx";
 import CategoryContent from "./CategoryContent.jsx";

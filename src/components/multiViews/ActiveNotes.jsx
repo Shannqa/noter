@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import NoteList from "../noteList/NoteList";
 import AddButton from "../addButon/AddButton";
 
@@ -17,11 +17,11 @@ function ActiveNotes() {
   }
 
   const notesActive = allNotes.filter((note) => note.status === "ACTIVE");
-
+  console.log(notesActive);
   return (
     <>
       <h2>All notes</h2>
-      <NoteList notesArray={notesActive} />,
+      <NoteList notesArray={notesActive} />
       <AddButton />
     </>
   );

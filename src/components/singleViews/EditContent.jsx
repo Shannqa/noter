@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import SingleNoteMenu from "../singleNoteMenu/SingleNoteMenu";
 import styles from "./singleViews.module.css";
 

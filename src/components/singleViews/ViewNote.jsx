@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useParams } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import ViewContent from "./ViewContent.jsx";
 import styles from "./singleViews.module.css";
 

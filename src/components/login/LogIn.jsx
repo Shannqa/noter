@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import styles from "./login.module.css";
 import { useNavigate } from "react-router";
-import { AppContext } from "../../App.jsx";
+import { AuthContext } from "../../App.jsx";
 import Button from "../button/Button.jsx";
 
 function LogIn() {
-  const { setUser } = useContext(AppContext);
+  const { setUser } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();

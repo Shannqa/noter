@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate, useOutletContext } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import styles from "./singleViews.module.css";
 import Button from "../button/Button";
 

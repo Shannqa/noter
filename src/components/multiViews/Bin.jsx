@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import NoteList from "../noteList/NoteList";
 
 function Bin() {

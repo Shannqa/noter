@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useParams, Link } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import styles from "./singleViews.module.css";
 import DeleteNoteDialog from "../dialogs/DeleteNoteDialog";
 import SingleNoteMenu from "../singleNoteMenu/SingleNoteMenu";

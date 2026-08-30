@@ -8,24 +8,14 @@ import AddButton from "./components/addButon/AddButton";
 import noteReducer from "./noteReducer";
 import categoryReducer from "./categoryReducer";
 
-export const AppContext = createContext({
+export const AuthContext = createContext({
   user: null,
   setUser: () => {},
-  allNotes: [],
-  dispatchNotes: null,
-  categories: [],
-  dispatchCategories: null,
-  categoriesLoaded: false,
-  notesLoaded: false,
 });
 
 function App() {
   const [user, setUser] = useState(null);
-  const [allNotes, dispatchNotes] = useReducer(noteReducer, []);
-  const [categories, dispatchCategories] = useReducer(categoryReducer, []);
-  const [notesLoaded, setNotesLoaded] = useState(false);
-  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
     async function checkAuth() {
@@ -40,79 +30,32 @@ function App() {
         // console.log("result log ", result);
         setUser(result);
       } catch (err) {
+        setUser(null);
         console.error(err);
+      } finally {
+        setAuthLoading(false);
       }
     }
     checkAuth();
   }, []);
 
-  useEffect(() => {
-    if (!user) {
-      dispatchNotes({ type: "reset" });
-      dispatchCategories({ type: "reset" });
-      return;
-    }
-    async function loadDb() {
-      try {
-        const [notesRes, categoriesRes] = await Promise.all([
-          fetch("http://localhost:3000/note", {
-            credentials: "include",
-          }),
-          fetch("http://localhost:3000/category", {
-            credentials: "include",
-          }),
-        ]);
-
-        if (!notesRes.ok) {
-          throw new Error("Failed to fetch notes");
-        }
-        if (!categoriesRes.ok) {
-          throw new Error("Failed to fetch categories");
-        }
-
-        const [notesJson, categoriesJson] = await Promise.all([
-          notesRes.json(),
-          categoriesRes.json(),
-        ]);
-
-        dispatchNotes({
-          type: "set_notes",
-          notes: notesJson,
-        });
-
-        dispatchCategories({
-          type: "set_categories",
-          categories: categoriesJson,
-        });
-
-        setLoaded(true);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    loadDb();
-  }, [user]);
+  if (authLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className={styles.page}>
-      <AppContext
+      <AuthContext
         value={{
           user,
           setUser,
-          allNotes,
-          categories,
-          dispatchNotes,
-          dispatchCategories,
-          categoriesLoaded,
-          notesLoaded,
-          loaded,
         }}
       >
         <Header />
         <div className={styles.outletBody}>
           <Outlet />
         </div>
-      </AppContext>
+      </AuthContext>
     </div>
   );
 }

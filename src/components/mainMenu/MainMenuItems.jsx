@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import "./MainMenu.css";
 import { useContext } from "react";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 
 function MainMenuItems({ menuOpen, toggleMenu }) {
   const { setUser, dispatchNotes, dispatchCategories } = useContext(AppContext);

@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import NoteList from "../noteList/NoteList";
 import AddButton from "../addButon/AddButton";
 

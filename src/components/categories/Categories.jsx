@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router";
 import AddCategory from "./AddCategory";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 import styles from "./categories.module.css";
 
 function Categories() {

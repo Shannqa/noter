@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router";
 import Dialog from "./Dialog";
-import { AppContext } from "../../App";
+import { AppContext } from "../../ProtectedLayout";
 
 function DeleteNoteDialog({ id, openDialog, setOpenDialog }) {
   const { dispatchNotes } = useContext(AppContext);

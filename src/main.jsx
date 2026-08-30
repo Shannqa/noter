@@ -15,6 +15,8 @@ import SignUp from "./components/login/SignUp.jsx";
 import LogIn from "./components/login/LogIn.jsx";
 import Landing from "./pages/Landing.jsx";
 import Home from "./pages/Home.jsx";
+import ProtectedLayout from "./ProtectedLayout.jsx";
+import PublicLayout from "./PublicLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,52 +24,73 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        index: true,
-        element: <Home />,
-      },
-      // {
-      //   path: "/",
-      //   element: <ActiveNotes />,
-      // },
-      {
-        path: "note/:id",
-        element: <ViewNote />,
-      },
-      {
-        path: "note/:id/edit",
-        element: <EditNote />,
-      },
-      {
-        path: "note/add",
-        element: <AddNote />,
-      },
-      {
-        path: "archive",
-        element: <Archive />,
-      },
-      {
-        path: "bin",
-        element: <Bin />,
-      },
-      {
-        path: "categories",
-        element: <Categories />,
-      },
-      {
-        path: "categories/:id",
-        element: <Category />,
-      },
-      {
-        path: "settings",
-        element: <Settings />,
+        path: "landing",
+        element: (
+          <PublicLayout>
+            <Landing />
+          </PublicLayout>
+        ),
       },
       {
         path: "signup",
-        element: <SignUp />,
+        element: (
+          <PublicLayout>
+            <SignUp />
+          </PublicLayout>
+        ),
       },
       {
         path: "login",
-        element: <LogIn />,
+        element: (
+          <PublicLayout>
+            <LogIn />
+          </PublicLayout>
+        ),
+      },
+      {
+        element: <ProtectedLayout />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+          {
+            path: "/notes",
+            element: <ActiveNotes />,
+          },
+          {
+            path: "note/:id",
+            element: <ViewNote />,
+          },
+          {
+            path: "note/:id/edit",
+            element: <EditNote />,
+          },
+          {
+            path: "note/add",
+            element: <AddNote />,
+          },
+          {
+            path: "archive",
+            element: <Archive />,
+          },
+          {
+            path: "bin",
+            element: <Bin />,
+          },
+          {
+            path: "categories",
+            element: <Categories />,
+          },
+          {
+            path: "categories/:id",
+            element: <Category />,
+          },
+          {
+            path: "settings",
+            element: <Settings />,
+          },
+        ],
       },
     ],
   },
