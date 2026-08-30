@@ -1,10 +1,50 @@
+.view {
+  /* min-height: calc(100vh - 50px); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .signUp {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: calc(256px + 24px * 2);
+  background-color: var(--off-white);
+  padding: 24px;
+  margin: 0 auto;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  width: calc(256px + 24px * 2);
+  background-color: var(--off-white);
+  padding: 24px;
+  margin: 0 auto;
+}
+
+.formLabel {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 16px 0;
 }
 
 input {
-  margin-bottom: 8px;
-  height: 1.2rem;
+  margin: 0;
+  line-height: 1.5em;
+  width: 256px;
+  margin-bottom: 16px;
+}
+
+button {
+  width: 256px;
+  background-color: var(--primary);
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  margin: 16px 0;
+  font-size: 18px;
 }

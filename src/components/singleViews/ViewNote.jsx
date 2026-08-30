@@ -5,18 +5,21 @@ import ViewContent from "./ViewContent.jsx";
 import styles from "./singleViews.module.css";
 
 function ViewNote() {
-  const { allNotes, categories, notesLoaded } = useContext(AppContext);
+  const { allNotes, categories, loaded } = useContext(AppContext);
   const { id } = useParams();
   const note = allNotes.find((item) => item.id === parseInt(id));
   console.log(note);
-  if (!notesLoaded) {
+
+  if (!loaded) {
     return (
       <div className={styles.singleView}>
         <h2>View Note</h2>
         <p>Loading...</p>
       </div>
     );
-  } else if (!note) {
+  }
+
+  if (!note) {
     return (
       <div className={styles.singleView}>
         <h2>View Note</h2>

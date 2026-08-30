@@ -1,5 +1,5 @@
 .headerContainer {
-  background-color: aliceblue;
+  background-color: var(--off-white);
 }
 
 .header {
@@ -8,23 +8,26 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 8px 0;
 }
 
-.home a {
+.sitename {
   font-size: 1.6rem;
   font-weight: bold;
   text-decoration: none;
-  color: #222222;
+  color: var(--off-black);
+  padding: 4px;
+  border-radius: 20px;
 }
 
-h1 {
-  font-size: 1.6rem;
-  margin: 0;
+.sitename:hover {
+  background-color: var(--secondary-lighter);
 }
-
 .rightSide {
   font-size: 1.6rem;
   margin: 0;
+  display: flex;
+  gap: 4px;
 }
 
 .home a:hover {
@@ -36,11 +39,11 @@ h1 {
   padding: 2px 4px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   width: 100%;
 }
 
-.h1:hover,
+/* .h1:hover,
 .rightSide:hover {
   border-bottom: 2px #222222 solid;
 }
@@ -49,4 +52,10 @@ h1 {
 .rightSideh1:hover {
   border-bottom: 2px #222222 solid;
   background-color: rgb(250, 248, 248);
+} */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

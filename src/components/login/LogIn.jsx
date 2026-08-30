@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import styles from "./login.module.css";
 import { useNavigate } from "react-router";
 import { AppContext } from "../../App.jsx";
+import Button from "../button/Button.jsx";
 
 function LogIn() {
   const { setUser } = useContext(AppContext);
@@ -39,8 +40,9 @@ function LogIn() {
   }
 
   return (
-    <div>
+    <div className={styles.view}>
       <form className={styles.login}>
+        <h1 className={styles.formLabel}>Welcome back!</h1>
         <label htmlFor="name">Username</label>
         <input name="name" onChange={(e) => setName(e.target.value)} />
         <label htmlFor="password">Password</label>
@@ -49,7 +51,7 @@ function LogIn() {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={(e) => sendForm(e)}>Log in</button>
+        <Button onClick={(e) => sendForm(e)}>Log in</Button>
       </form>
     </div>
   );

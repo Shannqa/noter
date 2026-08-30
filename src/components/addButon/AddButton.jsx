@@ -1,11 +1,11 @@
 import { Link } from "react-router";
-import "./AddButton.css";
+import styles from "./addButton.module.css";
 
 function AddButton() {
   function handleClick() {}
 
   return (
-    <Link to="note/add" className="add-plus-button">
+    <Link to="note/add" className={styles.addPlusButton}>
       <div>+</div>
     </Link>
   );

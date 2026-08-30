@@ -1,21 +1,21 @@
-.add-plus-button:link, 
-.add-plus-button:active, 
-.add-plus-button:hover, 
-.add-plus-button:visited {
+.addPlusButton:link,
+.addPlusButton:active,
+.addPlusButton:hover,
+.addPlusButton:visited {
   text-decoration: none;
   color: black;
 }
 
-.add-plus-button div:hover {
-  background-color:  rgb(79, 243, 235);
+.addPlusButton div:hover {
+  background-color: var(--darker);
 }
 
-.add-plus-button div:active {
+.addPlusButton div:active {
   background-color: rgb(123, 246, 213);
 }
 
-.add-plus-button div {
-  background-color: rgb(0, 255, 242);
+.addPlusButton div {
+  background-color: var(--primary);
   width: calc(4rem + 4px);
   border-radius: 50%;
   font-size: 4rem;

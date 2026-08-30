@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./login.module.css";
+import Button from "../button/Button.jsx";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -36,15 +37,17 @@ function SignUp() {
   }
 
   return (
-    <div>
+    <div className={styles.view}>
       <form className={styles.login}>
+        <h1 className={styles.formLabel}>Create account</h1>
         <label htmlFor="name">Username</label>
         <input name="name" onChange={(e) => setName(e.target.value)} />
         <label htmlFor="email">Email</label>
         <input name="email" onChange={(e) => setEmail(e.target.value)} />
         <label htmlFor="password">Password</label>
         <input name="password" onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={(e) => sendForm(e)}>Sign up</button>
+
+        <Button onClick={(e) => sendForm(e)}>Sign up</Button>
       </form>
     </div>
   );

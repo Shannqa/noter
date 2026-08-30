@@ -1,0 +1,13 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  --primary: hsl(208, 69%, 55%);
+  --primary-darker: hsl(208, 69%, 45%);
+  --darker: hsl(208, 69%, 35%);
+  --secondary-lighter: hsl(208, 79%, 92%);
+  --off-black: hsl(0, 0%, 13%);
+  --off-white: rgb(254, 254, 254);
+}
+
+* {
+  box-sizing: border-box;
+}

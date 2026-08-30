@@ -4,20 +4,28 @@ import { Link } from "react-router";
 import { useContext } from "react";
 import { AppContext } from "../../App";
 import RightSide from "./RightSide";
+import LoggedInNav from "./LoggedInNav";
+import LoggedOutNav from "./LoggedOutNav";
 
 function Header() {
   const { user } = useContext(AppContext);
 
   // console.log("Header user:", user);
 
+  if (user) {
+    return <LoggedInNav />;
+  } else {
+    return <LoggedOutNav />;
+  }
+
   return (
     <div className={styles.headerContainer}>
       <div className={styles.header}>
         <MainMenu />
         <div className={styles.home}>
-          <h1>
-            <Link to={"/"}>Home</Link>
-          </h1>
+          <Link to={"/"} className={styles.sitename}>
+            Noter
+          </Link>
           <RightSide user={user} />
         </div>
       </div>

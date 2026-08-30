@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useReducer } from "react";
 import styles from "./app.module.css";
+import globalStyles from "./globalStyles.module.css";
 import AddNote from "./components/singleViews/AddNote";
 import { Link, Outlet } from "react-router";
 import Header from "./components/header/Header";
@@ -104,6 +105,7 @@ function App() {
           dispatchCategories,
           categoriesLoaded,
           notesLoaded,
+          loaded,
         }}
       >
         <Header />

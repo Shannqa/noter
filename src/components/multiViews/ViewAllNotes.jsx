@@ -5,10 +5,10 @@ import NoteList from "../noteList/NoteList";
 import AddButton from "../addButon/AddButton";
 
 function ViewAllNotes() {
-  const { allNotes, setAllNotes } = useContext(AppContext);
+  const { allNotes, setAllNotes, loaded } = useContext(AppContext);
   const notesActive = allNotes.filter((note) => note.status === "ACTIVE");
 
-  if (!allNotes) {
+  if (!loaded) {
     return (
       <>
         <h2>All notes</h2>
@@ -17,10 +17,19 @@ function ViewAllNotes() {
     );
   }
 
+  if (loaded && allNotes.length == 0) {
+    return (
+      <>
+        <h2>All notes</h2>
+        <p>No notes yet!</p>
+      </>
+    );
+  }
+
   return (
     <>
       <h2>All notes</h2>
-      <NoteList notesArray={notesActive} />,
+      <NoteList notesArray={notesActive} />
       <AddButton />
     </>
   );

@@ -13,6 +13,8 @@ import Categories from "./components/categories/Categories.jsx";
 import Settings from "./components/settings/Settings.jsx";
 import SignUp from "./components/login/SignUp.jsx";
 import LogIn from "./components/login/LogIn.jsx";
+import Landing from "./pages/Landing.jsx";
+import Home from "./pages/Home.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,8 +23,12 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ActiveNotes />,
+        element: <Home />,
       },
+      // {
+      //   path: "/",
+      //   element: <ActiveNotes />,
+      // },
       {
         path: "note/:id",
         element: <ViewNote />,
