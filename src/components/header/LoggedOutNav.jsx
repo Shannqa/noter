@@ -13,7 +13,7 @@ function LoggedOutNav() {
       <div className={styles.sitelogo}>
         <LinkButton to={"/"}>Noter</LinkButton>
       </div>
-      <div>
+      <div className={styles.rightMenu}>
         <LinkButton to={"/login"}>Log In</LinkButton>
         <LinkButton to={"/signup"} style={"primary"}>
           Sign Up

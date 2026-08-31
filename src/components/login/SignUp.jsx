@@ -42,12 +42,16 @@ function SignUp() {
         <h1 className={styles.formLabel}>Create account</h1>
         <label htmlFor="name">Username</label>
         <input name="name" onChange={(e) => setName(e.target.value)} />
+        <span className={styles.inputError}>Error</span>
         <label htmlFor="email">Email</label>
         <input name="email" onChange={(e) => setEmail(e.target.value)} />
+        <span className={styles.inputError}></span>
         <label htmlFor="password">Password</label>
         <input name="password" onChange={(e) => setPassword(e.target.value)} />
-
-        <Button onClick={(e) => sendForm(e)}>Sign up</Button>
+        <span className={styles.inputError}></span>
+        <Button onClick={(e) => sendForm(e)} style={"primary"}>
+          Sign up
+        </Button>
       </form>
     </div>
   );

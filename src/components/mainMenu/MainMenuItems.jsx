@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router";
-import "./MainMenu.css";
+import styles from "./mainMenu.module.css";
 import { useContext } from "react";
 import { AppContext } from "../../ProtectedLayout";
 
-function MainMenuItems({ menuOpen, toggleMenu }) {
+function MainMenuItems({ node, toggleMenu }) {
   const { setUser, dispatchNotes, dispatchCategories } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -33,32 +33,26 @@ function MainMenuItems({ menuOpen, toggleMenu }) {
   }
 
   return (
-    <div className="main-menu">
-      <div className="menu-item-icon">
-        <button className="main-menu-icon" onClick={toggleMenu}>
-          =
-        </button>
-      </div>
-
-      <Link to="/note/add" className="menu-item" onClick={toggleMenu}>
+    <div className={styles.mainMenu} ref={node}>
+      <Link to="/note/add" className={styles.menuItem} onClick={toggleMenu}>
         Add note
       </Link>
-      <Link to="/" className="menu-item" onClick={toggleMenu}>
+      <Link to="/" className={styles.menuItem} onClick={toggleMenu}>
         All notes
       </Link>
-      <Link to="/categories" className="menu-item" onClick={toggleMenu}>
+      <Link to="/categories" className={styles.menuItem} onClick={toggleMenu}>
         Categories
       </Link>
-      <Link to="/archive" className="menu-item" onClick={toggleMenu}>
+      <Link to="/archive" className={styles.menuItem} onClick={toggleMenu}>
         Archive
       </Link>
-      <Link to="/bin" className="menu-item" onClick={toggleMenu}>
+      <Link to="/bin" className={styles.menuItem} onClick={toggleMenu}>
         Bin
       </Link>
-      <Link to="/settings" className="menu-item" onClick={toggleMenu}>
+      <Link to="/settings" className={styles.menuItem} onClick={toggleMenu}>
         Settings
       </Link>
-      <button className="menu-item" onClick={logOut}>
+      <button className={styles.menuItem} onClick={logOut}>
         Log out
       </button>
     </div>

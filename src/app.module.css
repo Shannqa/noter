@@ -12,11 +12,17 @@ body {
 
 .page {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .outletBody {
   margin: 0 auto;
   width: min(1200px, 100%);
+  min-height: calc(100vh - 80px);
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
 }
 
 .aFont {

@@ -51,7 +51,9 @@ function LogIn() {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button onClick={(e) => sendForm(e)}>Log in</Button>
+        <Button onClick={(e) => sendForm(e)} style={"primary"}>
+          Log in
+        </Button>
       </form>
     </div>
   );

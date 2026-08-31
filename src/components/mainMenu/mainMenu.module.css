@@ -1,8 +1,45 @@
+.mainMenu {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  position: absolute;
+  height: calc(100vh - 40px);
+  top: 40px;
+  right: 0px;
+  background-color: var(--off-white);
+}
+
+.mainMenu .menuItem {
+  text-align: center;
+  /* background-color: white; */
+  border: 0px;
+  font-size: 1rem;
+  padding: 4px;
+}
+
+.mainMenu a.menuItem:link,
+.mainMenu a.menuItem:active,
+.mainMenu a.menuItem:hover,
+.mainMenu a.menuItem:visited {
+  color: black;
+  text-decoration: none;
+}
+.mainMenu .menuItem:hover {
+  background-color: azure;
+  cursor: pointer;
+}
+
+.mainMenu .menuItem:active {
+  background-color: rgb(252, 255, 240);
+  cursor: pointer;
+}
+
 .mainMenuIcon {
-  width: 1.8rem;
-  height: 1.8rem;
-  font-size: 1.5rem;
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
   margin-right: 4px;
+  z-index: 100;
 }
 
 .mainMenuIcon:hover {
