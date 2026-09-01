@@ -23,7 +23,6 @@ function AddNote() {
         body: JSON.stringify({
           title: title,
           body: body,
-          userId: 4,
           categoryId: parseInt(category),
         }),
       });
