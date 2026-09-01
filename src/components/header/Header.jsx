@@ -1,4 +1,3 @@
-import MainMenu from "../mainMenu/MainMenu";
 import styles from "./header.module.css";
 import { Link } from "react-router";
 import { useContext } from "react";

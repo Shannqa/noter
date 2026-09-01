@@ -10,4 +10,23 @@
 
 * {
   box-sizing: border-box;
+  color: var(--off-black);
 }
+
+h1 {
+  font-size: 30px;
+  margin: 0 0 12px 0;
+  border-bottom: 4px solid var(--primary);
+}
+
+h2 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 8px 0;
+}
+
+/* @media (prefers-color-scheme: dark) {} */

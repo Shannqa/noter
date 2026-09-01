@@ -1,4 +1,3 @@
-import MainMenu from "../mainMenu/MainMenu";
 import styles from "./header.module.css";
 import { Link, useNavigate } from "react-router";
 import { useContext, useState, useEffect, useRef } from "react";
@@ -13,12 +12,16 @@ function LoggedInNav() {
   const { user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const node = useRef();
+  const menuRef = useRef();
+  const buttonRef = useRef();
 
   // clicking outside to close the menu
   useEffect(() => {
     const clickListener = (e) => {
-      if (!node.current || node.current.contains(e.target)) {
+      if (
+        menuRef.current?.contains(e.target) ||
+        buttonRef.current?.contains(e.target)
+      ) {
         return;
       } else {
         setMenuOpen(false);
@@ -26,7 +29,7 @@ function LoggedInNav() {
     };
     document.addEventListener("mousedown", clickListener);
     return () => document.removeEventListener("mousedown", clickListener);
-  }, [node]);
+  }, []);
 
   // pressing esc to close the menu
   useEffect(() => {
@@ -66,11 +69,17 @@ function LoggedInNav() {
           <span>Hello, {user.name}</span>
           <Button onClick={logOut}>Log out</Button>
           {/* <MainMenu /> */}
-          <MenuIcon onClick={() => setMenuOpen(!menuOpen)} />
+          <MenuIcon
+            onClick={() => setMenuOpen(!menuOpen)}
+            buttonRef={buttonRef}
+          />
         </div>
       </div>
       {menuOpen && (
-        <MainMenuItems node={node} toggleMenu={() => setMenuOpen(!menuOpen)} />
+        <MainMenuItems
+          menuRef={menuRef}
+          toggleMenu={() => setMenuOpen(!menuOpen)}
+        />
       )}
     </>
   );

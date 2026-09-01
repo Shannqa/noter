@@ -13,7 +13,7 @@ function ViewContent({ note }) {
   return (
     <div className={styles.singleView}>
       <div className={styles.viewHeading}>
-        <h2>View Note</h2>
+        <h1>View Note</h1>
         <SingleNoteMenu
           id={id}
           edit={true}

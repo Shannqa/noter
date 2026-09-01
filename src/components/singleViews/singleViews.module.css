@@ -1,7 +1,11 @@
 .singleView {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: var(--off-white);
+  max-width: 1200px;
+  margin: 16px;
+  padding: 16px;
+  box-shadow: hsl(0deg 0% 0% / 15%) 0px 2px 20px;
 }
 
 .viewHeading {
@@ -13,10 +17,10 @@
   /* position: relative; */
 }
 
-h2 {
+/* h2 {
   font-size: 1.4rem;
   margin: 0;
-}
+} */
 
 .menuContainer {
   position: relative;
@@ -24,7 +28,7 @@ h2 {
 
 .note {
   border: none;
-  padding: 1.2rem 1rem;
+  /* padding: 1.2rem 1rem; */
   margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -45,16 +49,16 @@ input.title {
   border: 1px #a4a4a4 solid;
 }
 
-label {
+/* label {
   margin-bottom: 4px;
 }
 
 select {
   padding: 8px;
   border-radius: 4px;
-  /* margin: 0.5rem 0; */
+   margin: 0.5rem 0; 
   border-color: #a4a4a4;
-}
+} */
 
 .body {
   /* margin: 4px; */

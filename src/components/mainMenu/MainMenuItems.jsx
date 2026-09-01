@@ -3,7 +3,7 @@ import styles from "./mainMenu.module.css";
 import { useContext } from "react";
 import { AppContext } from "../../ProtectedLayout";
 
-function MainMenuItems({ node, toggleMenu }) {
+function MainMenuItems({ menuRef, toggleMenu }) {
   const { setUser, dispatchNotes, dispatchCategories } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ function MainMenuItems({ node, toggleMenu }) {
   }
 
   return (
-    <div className={styles.mainMenu} ref={node}>
+    <div className={styles.mainMenu} ref={menuRef}>
       <Link to="/note/add" className={styles.menuItem} onClick={toggleMenu}>
         Add note
       </Link>

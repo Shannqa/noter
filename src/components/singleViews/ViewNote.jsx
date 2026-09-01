@@ -13,7 +13,7 @@ function ViewNote() {
   if (!loaded) {
     return (
       <div className={styles.singleView}>
-        <h2>View Note</h2>
+        <h1>View Note</h1>
         <p>Loading...</p>
       </div>
     );
@@ -22,7 +22,7 @@ function ViewNote() {
   if (!note) {
     return (
       <div className={styles.singleView}>
-        <h2>View Note</h2>
+        <h1>View Note</h1>
         <p>Note not found.</p>
       </div>
     );

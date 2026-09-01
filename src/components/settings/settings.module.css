@@ -1,0 +1,56 @@
+.settingsPage {
+  background-color: var(--off-white);
+  max-width: 1200px;
+  margin: 16px;
+  padding: 16px;
+  box-shadow: hsl(0deg 0% 0% / 15%) 0px 2px 20px;
+}
+
+.settingsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.settingsSection label {
+  margin-bottom: 4px;
+}
+
+.settingsSection input {
+  margin-bottom: 12px;
+}
+
+.settingsSection button {
+  margin-top: 12px;
+}
+
+.settingsSection select {
+  height: 1.8em;
+  width: 192px;
+}
+
+.menuButtons {
+  border: 2px var(--primary) solid;
+  background: none;
+  color: var(--primary);
+  border-radius: 12px;
+  width: fit-content;
+  padding: 4px;
+}
+
+.menuButtons button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--primary-darker);
+  padding: 4px;
+}
+
+.menuButtons button:nth-child(odd) {
+  border-right: var(--primary) 2px solid;
+}
+
+.menuButtons button:hover {
+  background-color: var(--secondary-lighter);
+}
