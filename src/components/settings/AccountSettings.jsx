@@ -3,10 +3,12 @@ import Button from "../button/Button";
 import styles from "./settings.module.css";
 
 function AccountSettings() {
-  const { currentPassword, setCurrentPassword } = useState("default");
-  const { newPassword, setNewPassword } = useState("default");
+  const [currentPassword, setCurrentPassword] = useState(null);
+  const [newPassword, setNewPassword] = useState(null);
 
-  async function changePassword() {
+  async function changePassword(e) {
+    console.log("change");
+    e.preventDefault();
     try {
       const response = await fetch(
         "http://localhost:3000/settings/change_password",
@@ -23,6 +25,7 @@ function AccountSettings() {
           }),
         },
       );
+      console.log(response);
       if (!response.ok) {
         throw new Error("Failed to change password");
       }
@@ -40,12 +43,22 @@ function AccountSettings() {
     <div>
       <h2>Account</h2>
       <h3>Change password</h3>
-      <form className={styles.settingsSection}>
+      <form className={styles.settingsSection} method="POST">
         <label htmlFor="current_password">Enter your current password</label>
-        <input name="current_password" value={currentPassword} />
+        <input
+          name="current_password"
+          value={currentPassword}
+          type="password"
+          onChange={(e) => setCurrentPassword(e.target.value)}
+        />
         <label htmlFor="new_password">Enter your new password</label>
-        <input name="current_password" value={newPassword} />
-        <Button onClick={changePassword}>Change password</Button>
+        <input
+          name="new_password"
+          value={newPassword}
+          type="password"
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <Button onClick={(e) => changePassword(e)}>Change password</Button>
       </form>
     </div>
   );

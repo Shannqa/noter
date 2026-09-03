@@ -5,8 +5,6 @@ import AddNote from "./components/singleViews/AddNote";
 import { Link, Outlet } from "react-router";
 import Header from "./components/header/Header";
 import AddButton from "./components/addButon/AddButton";
-import noteReducer from "./noteReducer";
-import categoryReducer from "./categoryReducer";
 
 export const AuthContext = createContext({
   user: null,
