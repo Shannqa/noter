@@ -26,7 +26,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.buttonSecondary {
+.secondary {
   composes: button;
   border: 2px var(--primary) solid;
   background: none;
@@ -36,7 +36,7 @@
 .button:hover {
   background-color: var(--primary-darker);
 }
-.buttonSecondary:hover {
+.secondary:hover {
   background-color: var(--secondary-lighter);
 }
 /* .button:active {

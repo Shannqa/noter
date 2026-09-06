@@ -1,8 +1,8 @@
 import styles from "./button.module.css";
 
-function Button({ children, onClick, style }) {
-  const buttonStyle =
-    style === "primary" ? styles.button : styles.buttonSecondary;
+function Button({ children, onClick, style = "button", className }) {
+  const buttonStyle = `${styles[style]} ${className}`;
+
   return (
     <button className={buttonStyle} onClick={onClick}>
       {children}

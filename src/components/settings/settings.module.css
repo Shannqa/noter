@@ -54,3 +54,13 @@
 .menuButtons button:hover {
   background-color: var(--secondary-lighter);
 }
+
+.errorMsg {
+  color: var(--error-red);
+  font-size: 14px;
+}
+
+.successMsg {
+  color: var(--success-green);
+  font-size: 14px;
+}

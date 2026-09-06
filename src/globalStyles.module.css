@@ -6,6 +6,8 @@
   --secondary-lighter: hsl(208, 79%, 92%);
   --off-black: hsl(0, 0%, 13%);
   --off-white: rgb(254, 254, 254);
+  --error-red: hsl(0, 75%, 25%);
+  --success-green: hsl(115, 82%, 19%);
 }
 
 * {
