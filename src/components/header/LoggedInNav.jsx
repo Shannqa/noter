@@ -52,7 +52,7 @@ function LoggedInNav() {
       } else {
         console.log("logout");
         setUser(null);
-        navigate("/");
+        navigate("/login");
       }
     } catch (err) {
       console.error(err);

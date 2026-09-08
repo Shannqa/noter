@@ -8,12 +8,50 @@ function LogIn() {
   const { setUser } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
+
+  function checkName() {
+    if (name.length === 0) {
+      setNameError("Enter your username");
+      return false;
+    } else {
+      setNameError("");
+      return true;
+    }
+  }
+
+  function checkPassword() {
+    if (password.length === 0) {
+      setPasswordError("Enter your password");
+      return false;
+    } else {
+      setPasswordError("");
+      return true;
+    }
+  }
+
+  function setInputValue(e, setter, err, errSetter) {
+    if (err.length > 0) {
+      errSetter("");
+    }
+    if (errorMsg.length > 0) {
+      setErrorMsg("");
+    }
+    setter(e.target.value);
+  }
 
   async function sendForm(e) {
     e.preventDefault();
+    const nameValidity = checkName();
+    const passwordValidity = checkPassword();
+
+    if (!nameValidity || !passwordValidity) {
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:3000/user/login", {
@@ -31,24 +69,28 @@ function LogIn() {
 
       const result = await response.json();
       // console.log(result);
-
       if (result.error?.length > 0) {
-        // console.log(result.error);
-        setLoginError(result.error);
+        result.error.forEach((error) => {
+          if (error.path === "name") {
+            setNameError(error.msg);
+          }
+          if (error.path === "password") {
+            setPasswordError(error.msg);
+          }
+        });
         return;
-      } else if (result.message?.length > 0) {
-        console.log(result.message);
-        setLoginError(result.message);
+      } else if (!response.ok) {
+        console.log(result);
+        setErrorMsg("Something went wrong! Try again later");
         return;
       }
-
       setUser(result.user);
       setName("");
       setPassword("");
       navigate("/");
     } catch (err) {
       console.log(err);
-      setLoginError(`Error! ${err}`);
+      setErrorMsg("Something went wrong! Try again later");
     }
   }
 
@@ -62,13 +104,15 @@ function LogIn() {
         <input
           id="name"
           name="name"
-          onChange={(e) => setName(e.target.value)}
+          autoFocus={true}
+          onChange={(e) => setInputValue(e, setName, nameError, setNameError)}
           className={
-            loginError.length === 0
+            nameError.length === 0
               ? styles.loginInput
               : `${styles.loginInput} ${styles.invalid}`
           }
         />
+        <span className={styles.inputError}>{nameError}</span>
         <label htmlFor="password" className={styles.inputLabel}>
           Password
         </label>
@@ -77,9 +121,11 @@ function LogIn() {
             id="password"
             name="password"
             type={passwordVisibility ? "text" : "password"}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) =>
+              setInputValue(e, setPassword, passwordError, setPasswordError)
+            }
             className={
-              loginError.length === 0
+              passwordError.length === 0
                 ? styles.loginInput
                 : `${styles.loginInput} ${styles.invalid}`
             }
@@ -90,7 +136,8 @@ function LogIn() {
             className={styles.passwordCheckbox}
           />
         </div>
-        <span className={styles.inputError}>{loginError}</span>
+        <span className={styles.inputError}>{passwordError}</span>
+        <span className={styles.errorMsg}>{errorMsg}</span>
         <Button onClick={(e) => sendForm(e)} className={styles.formButton}>
           Log in
         </Button>

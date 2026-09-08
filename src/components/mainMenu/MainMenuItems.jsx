@@ -24,7 +24,7 @@ function MainMenuItems({ menuRef, toggleMenu }) {
           type: "reset",
         });
         toggleMenu();
-        navigate("/");
+        navigate("/login");
         // onClick(); // toggle menu
       }
     } catch (err) {

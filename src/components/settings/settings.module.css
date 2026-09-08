@@ -12,17 +12,17 @@
   align-items: flex-start;
 }
 
-.settingsSection label {
+/* .settingsSection label {
   margin-bottom: 4px;
-}
+} */
 
-.settingsSection input {
+/* .settingsSection input {
   margin-bottom: 12px;
-}
+} */
 
-.settingsSection button {
+/* .settingsSection button {
   margin-top: 12px;
-}
+} */
 
 .settingsSection select {
   height: 1.8em;
@@ -63,4 +63,52 @@
 .successMsg {
   color: var(--success-green);
   font-size: 14px;
+}
+
+.inputLabel {
+  margin-top: 10px;
+}
+
+.formInput {
+  margin: 0;
+  line-height: 1.5em;
+  width: 256px;
+  /* margin-top: 10px; */
+}
+
+.formInput.invalid {
+  border-color: red;
+}
+
+.inputError {
+  font-size: 14px;
+  color: hsl(0, 81%, 36%);
+  /* margin-bottom: 8px; */
+}
+
+.formButton {
+  margin-top: 20px;
+}
+
+.passwordContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.passwordCheckbox {
+  position: absolute;
+  z-index: 10;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.passwordCheckbox:hover {
+  cursor: pointer;
+}
+
+.settingsSection select,
+.settingsSection option {
+  cursor: pointer;
 }

@@ -7,7 +7,7 @@ function AppearanceSettings() {
   const { settings } = useContext(AppContext);
   const [theme, setTheme] = useState(settings?.theme);
 
-  async function saveSettings(e) {
+  async function sendForm(e) {
     e.preventDefault();
     try {
       const response = await fetch("http://localhost:3000/settings", {
@@ -43,6 +43,7 @@ function AppearanceSettings() {
       <form className={styles.settingsSection} method="post">
         <label htmlFor="theme">Choose the theme:</label>
         <select
+          autoFocus={true}
           name="theme"
           id="theme-select"
           value={theme}
@@ -52,7 +53,9 @@ function AppearanceSettings() {
           <option value="LIGHT">Light</option>
           <option value="DARK">Dark</option>{" "}
         </select>
-        <Button onClick={(e) => saveSettings(e)}>Save settings</Button>
+        <Button onClick={(e) => sendForm(e)} className={styles.formButton}>
+          Save settings
+        </Button>
       </form>
     </div>
   );
